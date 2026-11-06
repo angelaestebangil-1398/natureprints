@@ -4,7 +4,7 @@ usage: python3 make_mockup.py room.jpg photo.jpg out.jpg px_per_cm center_x bott
 import sys
 from PIL import Image, ImageFilter, ImageStat
 
-def mockup(room_p, photo_p, out_p, ppc, cx, bottom, wcm, hcm, crop=None):
+def mockup(room_p, photo_p, out_p, ppc, cx, bottom, wcm, hcm, crop=None, light=None):
     room = Image.open(room_p).convert("RGB")
     W, H = round(wcm * ppc), round(hcm * ppc)
     frame = max(2, round(1.8 * ppc))      # 1.8 cm thin frame
@@ -13,7 +13,8 @@ def mockup(room_p, photo_p, out_p, ppc, cx, bottom, wcm, hcm, crop=None):
 
     # light level of the wall where the print hangs -> darken print to match
     wall = room.crop((x0, y0, x0 + W, y0 + H)).convert("L")
-    light = max(0.55, min(1.0, ImageStat.Stat(wall).mean[0] / 215))
+    if light is None:
+        light = max(0.8, min(1.0, ImageStat.Stat(wall).mean[0] / 215))
 
     paper = Image.new("RGB", (W - 2 * frame, H - 2 * frame), (247, 245, 240))
     inner = Image.open(photo_p).convert("RGB")

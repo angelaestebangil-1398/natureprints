@@ -332,3 +332,13 @@ h3 { font-size: 20px; }
   .place-img { width: 100%; aspect-ratio: 3/2; }
   .tab-sep { flex-basis: 100%; height: 0; margin: 0; }
 }
+
+/* ---------- Real room pictures ---------- */
+.view-photo { aspect-ratio: 4/3; overflow: hidden; background: var(--sand); }
+.view-photo img { width: 100%; height: 100%; object-fit: cover; }
+.thumb .view-photo { height: 100%; }
+.card .stage.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity .45s, transform .6s; }
+.card .stage.photo img.hover { opacity: 0; }
+.card:hover .stage.photo img.hover { opacity: 1; }
+.card:hover .stage.photo img { transform: scale(1.02); }
+.hero .view-photo, .split .view-photo { border-radius: var(--radius); box-shadow: 0 24px 50px -30px rgba(60,45,25,.5); }

@@ -32,3 +32,67 @@ def clear_box(im, box, margin=12, feather=0):
         mask = mask.filter(ImageFilter.GaussianBlur(b / 2))
         im.paste(Image.composite(im, original, mask))
     return im
+
+
+def clear_profile(im, boxes, sample_x, feather=20):
+    """Fill one or more boxes with the wall colour taken row by row from a clean
+    vertical strip (sample_x = (x0, x1)), then blend the edges softly."""
+    from PIL import ImageDraw
+    original = im.copy()
+    px = im.load()
+    sx0, sx1 = sample_x
+    mask = Image.new("L", im.size, 0)
+    for (x0, y0, x1, y1) in boxes:
+        for y in range(y0, y1):
+            c = [sum(px[x, y][k] for x in range(sx0, sx1)) / (sx1 - sx0) for k in range(3)]
+            for x in range(x0, x1):
+                n = random.uniform(-1.0, 1.0)
+                px[x, y] = tuple(int(c[k] + n) for k in range(3))
+        ImageDraw.Draw(mask).rectangle((x0, y0, x1 - 1, y1 - 1), fill=255)
+    mask = mask.filter(ImageFilter.GaussianBlur(feather / 3))
+    return Image.composite(im, original, mask)
+
+
+def clear_lr(im, boxes, feather=16):
+    """boxes: list of (box, left_strip, right_strip). Each row is filled with a blend
+    from the left strip colour to the right strip colour (left_strip=None: right only)."""
+    from PIL import ImageDraw
+    original = im.copy()
+    px = im.load()
+    mask = Image.new("L", im.size, 0)
+    def avg(strip, y):
+        a, b = strip
+        return [sum(px[x, y][k] for x in range(a, b)) / (b - a) for k in range(3)]
+    for (x0, y0, x1, y1), left, right in boxes:
+        for y in range(y0, y1):
+            R = avg(right, y)
+            L = avg(left, y) if left else R
+            for x in range(x0, x1):
+                t = (x - x0) / max(1, x1 - x0)
+                n = random.uniform(-1.0, 1.0)
+                px[x, y] = tuple(int(L[k] * (1 - t) + R[k] * t + n) for k in range(3))
+        ImageDraw.Draw(mask).rectangle((x0, y0, x1 - 1, y1 - 1), fill=255)
+    mask = mask.filter(ImageFilter.GaussianBlur(feather / 3))
+    return Image.composite(im, original, mask)
+
+
+def clear_tb(im, boxes, feather=16):
+    """boxes: list of (box, top_rows, bottom_rows). Each column is filled with a blend
+    from the wall colour just above the box to the colour just below it."""
+    from PIL import ImageDraw
+    original = im.copy()
+    px = im.load()
+    mask = Image.new("L", im.size, 0)
+    def avg(x, rows):
+        a, b = rows
+        return [sum(px[x, y][k] for y in range(a, b)) / (b - a) for k in range(3)]
+    for (x0, y0, x1, y1), top, bottom in boxes:
+        for x in range(x0, x1):
+            T, B = avg(x, top), avg(x, bottom)
+            for y in range(y0, y1):
+                t = (y - y0) / max(1, y1 - y0)
+                n = random.uniform(-1.0, 1.0)
+                px[x, y] = tuple(int(T[k] * (1 - t) + B[k] * t + n) for k in range(3))
+        ImageDraw.Draw(mask).rectangle((x0, y0, x1 - 1, y1 - 1), fill=255)
+    mask = mask.filter(ImageFilter.GaussianBlur(feather / 3))
+    return Image.composite(im, original, mask)

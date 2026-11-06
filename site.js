@@ -124,9 +124,36 @@ function roomHTML(p, sizeId, type = "living") {
     </div>`;
 }
 
+/* ---------- Real room pictures (built by tools/build_mockups.py) ---------- */
+const mockFor = (p) => (typeof MOCKUPS !== "undefined" ? MOCKUPS[p.id] : null);
+
+// Picture of a room for the chosen size; if that wall can't fit it, the biggest size that fits.
+function roomShot(room, sizeId) {
+  const order = SIZES.map((s) => s.id);
+  let i = order.indexOf(sizeId);
+  while (i >= 0 && !room.sizes[order[i]]) i--;
+  const shown = i >= 0 ? order[i] : Object.keys(room.sizes)[0];
+  return { src: room.sizes[shown], shown };
+}
+const photoView = (src, alt) => `<div class="view-photo"><img src="${src}" alt="${alt}"></div>`;
+
 /* ---------- Product card ---------- */
 function cardHTML(p) {
   const midSize = sizesFor(p)[Math.min(1, sizesFor(p).length - 1)].id;
+  const m = mockFor(p);
+  if (m) {
+    return `
+    <a class="card" href="product.html?id=${p.id}">
+      <div class="stage photo">
+        <img src="${m.print}" alt="${p.title}" loading="lazy">
+        <img class="hover" src="${roomShot(m.rooms[0], midSize).src}" alt="" loading="lazy">
+      </div>
+      <div class="info">
+        <div><h3>${p.title}</h3><div class="cat-name">${catName(p.category)} · ${placeOf(p).name}</div></div>
+        <div class="from">from ${money(fromPrice(p))}</div>
+      </div>
+    </a>`;
+  }
   return `
     <a class="card" href="product.html?id=${p.id}">
       <div class="stage">
@@ -317,8 +344,15 @@ function checkout() {
 function renderHome() {
   document.querySelectorAll("[data-ico]").forEach((el) => (el.innerHTML = ICON[el.dataset.ico]));
   const hero = PRODUCTS.find((p) => p.id === "ibex-portrait") || PRODUCTS[0];
-  $("[data-hero-room]").innerHTML = roomHTML(hero, "70x100", "living");
-  $("[data-bath-room]").innerHTML = roomHTML(PRODUCTS.find((p) => p.room === "office") || PRODUCTS[1], "50x70", "office");
+  const heroM = mockFor(hero);
+  $("[data-hero-room]").innerHTML = heroM
+    ? photoView(roomShot(heroM.rooms[0], "70x100").src, hero.title)
+    : roomHTML(hero, "70x100", "living");
+  const second = PRODUCTS.find((p) => p.id === "orb-spider") || PRODUCTS[1];
+  const secondM = mockFor(second);
+  $("[data-bath-room]").innerHTML = secondM
+    ? photoView(roomShot(secondM.rooms[0], "70x100").src, second.title)
+    : roomHTML(second, "50x70", "office");
 
   $("[data-cats]").innerHTML = CATEGORIES.map((c) => {
     const items = PRODUCTS.filter((p) => p.category === c.id);
@@ -381,8 +415,19 @@ function renderProduct() {
 
   $("[data-crumb]").innerHTML = `<a href="index.html">Home</a> / <a href="shop.html?cat=${p.category}">${catName(p.category)}</a> / ${p.title}`;
 
+  const m = mockFor(p);
   const views = () => {
     const d = dims(p, sizeById(state.size));
+    if (m) {
+      return [
+        { label: "Print", html: photoView(m.print, p.title) },
+        ...m.rooms.map((r) => {
+          const shot = roomShot(r, state.size);
+          return { label: r.label, html: photoView(shot.src, `${p.title} in a ${r.label.toLowerCase()}`), shown: shot.shown };
+        }),
+        { label: "Detail", html: `<div class="view-detail"><img src="${p.image}" alt="Detail of ${p.title}"></div>` },
+      ];
+    }
     return [
       { label: "Print", html: `<div class="view-flat"><div class="paper" style="${p.orientation === "portrait" ? "width:52%" : ""}"><img src="${p.image}" alt="${p.title}" style="aspect-ratio:${d.w}/${d.h}"></div></div>` },
       ...roomOrder(p).map((r) => ({ label: ROOM_LABEL[r], html: roomHTML(p, state.size, r) })),
@@ -394,8 +439,13 @@ function renderProduct() {
     const v = views();
     $("[data-main]").innerHTML = v.map((x, i) => `<div class="view ${i === state.view ? "active" : ""}">${x.html}</div>`).join("");
     $("[data-thumbs]").innerHTML = v.map((x, i) => `<button class="thumb ${i === state.view ? "active" : ""}" data-view="${i}" aria-label="${x.label}">${x.html}<span class="thumb-label">${x.label}</span></button>`).join("");
-    $("[data-caption]").textContent = state.view >= 1 && state.view <= 3
-      ? `Shown at real scale: ${sizeLabel(p, sizeById(state.size))}. Frame not included.` : "";
+    const cur = v[state.view];
+    const shown = cur.shown || state.size;
+    $("[data-caption]").textContent = state.view > 0 && state.view < v.length - 1
+      ? (shown === state.size
+        ? `Shown at real scale: ${sizeLabel(p, sizeById(shown))}. Frame not included.`
+        : `This wall fits up to ${sizeLabel(p, sizeById(shown))}, shown at that size. Frame not included.`)
+      : "";
 
     $("[data-price]").textContent = money(unitPrice(state.size, state.finish) * state.qty);
     $("[data-finishes]").innerHTML = FINISHES.map((f) => `<button class="opt ${f.id === state.finish ? "active" : ""}" data-finish="${f.id}">${f.name}</button>`).join("");

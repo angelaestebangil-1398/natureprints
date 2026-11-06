@@ -50,7 +50,7 @@ const SIZES = [
 ];
 
 /* The prints. Copy a block to add a new one.
-   - no: the photo number (shown as "No. 07"). Never reuse a number.
+   - no: our internal photo number (not shown on the website). Never reuse a number.
    - category: one of the CATEGORIES ids above
    - place: one of the PLACES ids above
    - room: which room the print is shown in first: "living", "bath" or "office"

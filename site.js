@@ -7,7 +7,6 @@
 const $ = (sel, root = document) => root.querySelector(sel);
 const money = (n) => SHOP.currency + (Number.isInteger(n) ? n : n.toFixed(2));
 const placeOf = (p) => PLACES.find((x) => x.id === p.place) || { name: "", country: "" };
-const photoNo = (p) => "No. " + String(p.no || 0).padStart(2, "0");
 const catName = (id) => (CATEGORIES.find((c) => c.id === id) || {}).name || "";
 const sizesFor = (p) => SIZES.filter((s) => !p.sizes || p.sizes.includes(s.id));
 const finishById = (id) => FINISHES.find((f) => f.id === id) || FINISHES[0];
@@ -131,7 +130,6 @@ function cardHTML(p) {
   return `
     <a class="card" href="product.html?id=${p.id}">
       <div class="stage">
-        <span class="tag">${photoNo(p)}</span>
         <div class="paper ${p.orientation}"><img src="${p.thumb}" alt="${p.title}" loading="lazy"></div>
         ${roomHTML(p, midSize, p.room || "living")}
       </div>
@@ -409,7 +407,7 @@ function renderProduct() {
   }
 
   $("[data-title]").textContent = p.title;
-  $("[data-cat]").textContent = `${catName(p.category)} · ${photoNo(p)}`;
+  $("[data-cat]").textContent = catName(p.category);
   $("[data-cat]").href = `shop.html?cat=${p.category}`;
   $("[data-desc]").textContent = p.description;
   $("[data-place]").innerHTML = `Photographed in <a href="shop.html?place=${p.place}">${placeOf(p).name}, ${placeOf(p).country}</a> · ${COLLECTION.number}: ${COLLECTION.name}`;

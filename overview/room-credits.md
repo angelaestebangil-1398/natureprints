@@ -22,3 +22,13 @@
 | 09/10 A | Clay Banks | https://unsplash.com/photos/hjNTscPXJTg |
 | 09/10 B | Clay Banks | https://unsplash.com/photos/FI4ZN6aaWQ0 |
 | 09/10 C | Clay Banks | https://unsplash.com/photos/fAprylEyuCs |
+
+# New bright room set (v2), all free, Unsplash License
+
+| Room | Photographer | Unsplash page |
+|---|---|---|
+| Sideboard, white wall | Urban Vintage | https://unsplash.com/photos/ynaMTwl3R1A |
+| Cabinet + armchair | Julia / Beazy | https://unsplash.com/photos/aX1TTOuq83M |
+| White console + mirror | Liana Mikah | https://unsplash.com/photos/GUroRwA99SU |
+| Studio living room | Urban Vintage | https://unsplash.com/photos/o-cmKiAG6QQ |
+| Bathroom (kept) | Ela De Pure | https://unsplash.com/photos/HIu7A27ptE0 |

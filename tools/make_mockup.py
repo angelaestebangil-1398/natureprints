@@ -42,3 +42,24 @@ if __name__ == "__main__":
     a = sys.argv
     crop = tuple(map(int, a[9:13])) if len(a) > 9 else None
     mockup(a[1], a[2], a[3], float(a[4]), float(a[5]), float(a[6]), float(a[7]), float(a[8]), crop)
+
+def studio(photo_p, out_p, size=(1400, 1050), bg=(236, 235, 232)):
+    """Print only (no frame), big and straight on, on a light background."""
+    from PIL import ImageDraw
+    canvas = Image.new("RGB", size, bg)
+    photo = Image.open(photo_p).convert("RGB")
+    W = int(size[0] * 0.74)
+    border = int(W * 0.045)
+    iw = W - 2 * border
+    ih = int(iw * photo.height / photo.width)
+    photo = photo.resize((iw, ih), Image.LANCZOS)
+    H = ih + 2 * border
+    x0, y0 = (size[0] - W) // 2, (size[1] - H) // 2
+    sh = Image.new("L", size, 0)
+    ImageDraw.Draw(sh).rectangle((x0 + 6, y0 + 14, x0 + W + 6, y0 + H + 14), fill=90)
+    sh = sh.filter(ImageFilter.GaussianBlur(18))
+    canvas = Image.composite(Image.new("RGB", size, (60, 55, 50)), canvas, sh)
+    paper = Image.new("RGB", (W, H), (250, 249, 246))
+    paper.paste(photo, (border, border))
+    canvas.paste(paper, (x0, y0))
+    canvas.save(out_p, quality=88)

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <title>Print · NaturePrints</title>
+</head>
+<body data-page="product">
+  <main class="wrap">
+    <div class="breadcrumb" data-crumb></div>
+    <div class="pdp">
+      <div>
+        <div class="gallery-main" data-main></div>
+        <p class="room-caption" data-caption></p>
+        <div class="thumbs" data-thumbs></div>
+      </div>
+      <div class="pdp-info">
+        <a class="cat-link" data-cat href="#"></a>
+        <h1 data-title style="margin-top:8px"></h1>
+        <div class="pdp-place" data-place></div>
+        <div class="pdp-price" data-price></div>
+        <div class="pdp-ship">Free shipping on orders over €75</div>
+        <p class="muted" data-desc></p>
+
+        <div class="opt-label">Paper finish <span data-finish-label></span></div>
+        <div class="opts two" data-finishes></div>
+        <div class="finish-note" data-finish-note></div>
+
+        <div class="opt-label">Size <span data-size-label></span></div>
+        <div class="opts" data-sizes></div>
+
+        <div class="buy-row">
+          <div class="qty"><button data-qty-d="-1" aria-label="Less">−</button><span data-qty>1</span><button data-qty-d="1" aria-label="More">+</button></div>
+          <button class="btn" data-add>Add to cart</button>
+        </div>
+
+        <div class="trust">
+          <div>Printed to order in Barcelona, ships in 5–7 working days</div>
+          <div>Print only, without frame</div>
+          <div>14-day returns</div>
+        </div>
+
+        <div class="acc">
+          <details open><summary>About the print</summary><div class="body"><ul>
+            <li>Fine art print on museum-quality paper</li>
+            <li>Archival pigment inks, made to last for generations</li>
+            <li>White border around the photo for easy framing</li>
+            <li>Fits standard frame sizes</li>
+          </ul></div></details>
+          <details><summary>Matte or glossy?</summary><div class="body">Matte has a soft, painting-like look with no reflections, ideal for bright rooms. Glossy gives deeper colours and contrast with a subtle shine.</div></details>
+          <details><summary>Shipping &amp; returns</summary><div class="body">Shipped from Barcelona worldwide in a rigid protective tube. Free shipping on orders over €75. Returns accepted within 14 days. <a href="policies.html">Read more</a></div></details>
+        </div>
+      </div>
+    </div>
+
+    <section class="section" style="padding-top:20px">
+      <div class="section-head"><h2>You may also like</h2><a href="shop.html">View all →</a></div>
+      <div class="grid" data-related></div>
+    </section>
+  </main>
+  <script src="products.js"></script>
+  <script src="site.js"></script>
+</body>
+</html>

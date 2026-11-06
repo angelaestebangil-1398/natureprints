@@ -2,3 +2,4 @@
 *.zip
 preview-*.png
 rooms-src/.cache/
+__pycache__/

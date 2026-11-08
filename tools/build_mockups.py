@@ -63,10 +63,15 @@ PLAN = {
     "mallard-portrait": ["bath-tiles", "bath-concrete"],
     "ibex-mountain":    ["sideboard", "teal-living"],
     "ibex-portrait":    ["white-living", "cabinet"],
+    "blue-tit":         ["cabinet", "grey-sofa"],
+    "monk-parakeet":    ["teal-living", "dining"],
+    "serins":           ["kitchen-shelf", "console"],
+    "robin":            ["dining", "sideboard"],
+    "hoopoe":           ["white-living", "sideboard"],
 }
 
 # Sizes each print is sold in (keep in line with products.js)
-LIMITED = {"crested-tit": ["40x50", "50x70"], "ibex-mountain": ["40x50", "50x70"]}
+LIMITED = {"crested-tit": ["40x50", "50x70"], "ibex-mountain": ["40x50", "50x70"], "hoopoe": ["40x50", "50x70"]}
 
 OUT = os.path.join(ROOT, "images", "rooms")
 WIDTH = 1400  # output width

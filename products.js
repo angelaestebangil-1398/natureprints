@@ -163,4 +163,60 @@ const PRODUCTS = [
     thumb: "images/orb-spider-sm.jpg",
     description: "A garden orb spider waits on a curled leaf, every hair and detail in sharp focus.",
   },
+  {
+    no: 11,
+    id: "blue-tit",
+    place: "",            // TO CONFIRM: where was it taken?
+    title: "Blue Tit in Autumn",
+    category: "birds",
+    orientation: "landscape",
+    image: "images/blue-tit.jpg",
+    thumb: "images/blue-tit-sm.jpg",
+    description: "A blue tit pauses among bare branches and the last copper leaves of autumn, its yellow chest glowing in the low light.",
+  },
+  {
+    no: 12,
+    id: "monk-parakeet",
+    place: "",            // TO CONFIRM: where was it taken?
+    title: "The Berry Thief",
+    category: "birds",
+    orientation: "landscape",
+    image: "images/monk-parakeet.jpg",
+    thumb: "images/monk-parakeet-sm.jpg",
+    description: "A monk parakeet feasts on red berries in a city tree, looking straight at the camera with its beak still full.",
+  },
+  {
+    no: 13,
+    id: "serins",
+    place: "",            // TO CONFIRM: where was it taken?
+    title: "Among the Pines",
+    category: "birds",
+    orientation: "landscape",
+    image: "images/serins.jpg",
+    thumb: "images/serins-sm.jpg",
+    description: "Two European serins hide among pine needles and cones, flashes of bright yellow against the sky.",
+  },
+  {
+    no: 14,
+    id: "robin",
+    place: "",            // TO CONFIRM: where was it taken?
+    title: "The Robin's Song",
+    category: "birds",
+    orientation: "landscape",
+    image: "images/robin.jpg",
+    thumb: "images/robin-sm.jpg",
+    description: "A European robin sings from a branch, its orange breast framed by green and yellow autumn leaves.",
+  },
+  {
+    no: 15,
+    id: "hoopoe",
+    place: "",            // TO CONFIRM: where was it taken?
+    title: "The Hoopoe",
+    category: "birds",
+    orientation: "landscape",
+    image: "images/hoopoe.jpg",
+    thumb: "images/hoopoe-sm.jpg",
+    description: "A hoopoe tosses a seed into the air in the grass, showing off its striped wings and orange crest.",
+    sizes: ["40x50", "50x70"], // smaller file, so no 70×100 (to check with the full file)
+  },
 ];

@@ -221,5 +221,116 @@ const MOCKUPS = {
         }
       }
     ]
+  },
+  "blue-tit": {
+    "print": "images/rooms/blue-tit-print.jpg",
+    "rooms": [
+      {
+        "id": "cabinet",
+        "label": "Living room",
+        "sizes": {
+          "40x50": "images/rooms/blue-tit-cabinet-40x50.jpg",
+          "50x70": "images/rooms/blue-tit-cabinet-50x70.jpg",
+          "70x100": "images/rooms/blue-tit-cabinet-70x100.jpg"
+        }
+      },
+      {
+        "id": "grey-sofa",
+        "label": "Living room",
+        "sizes": {
+          "40x50": "images/rooms/blue-tit-grey-sofa-40x50.jpg",
+          "50x70": "images/rooms/blue-tit-grey-sofa-50x70.jpg",
+          "70x100": "images/rooms/blue-tit-grey-sofa-70x100.jpg"
+        }
+      }
+    ]
+  },
+  "monk-parakeet": {
+    "print": "images/rooms/monk-parakeet-print.jpg",
+    "rooms": [
+      {
+        "id": "teal-living",
+        "label": "Living room",
+        "sizes": {
+          "40x50": "images/rooms/monk-parakeet-teal-living-40x50.jpg",
+          "50x70": "images/rooms/monk-parakeet-teal-living-50x70.jpg",
+          "70x100": "images/rooms/monk-parakeet-teal-living-70x100.jpg"
+        }
+      },
+      {
+        "id": "dining",
+        "label": "Kitchen",
+        "sizes": {
+          "40x50": "images/rooms/monk-parakeet-dining-40x50.jpg",
+          "50x70": "images/rooms/monk-parakeet-dining-50x70.jpg",
+          "70x100": "images/rooms/monk-parakeet-dining-70x100.jpg"
+        }
+      }
+    ]
+  },
+  "serins": {
+    "print": "images/rooms/serins-print.jpg",
+    "rooms": [
+      {
+        "id": "kitchen-shelf",
+        "label": "Kitchen",
+        "sizes": {
+          "40x50": "images/rooms/serins-kitchen-shelf-40x50.jpg"
+        }
+      },
+      {
+        "id": "console",
+        "label": "Office",
+        "sizes": {
+          "40x50": "images/rooms/serins-console-40x50.jpg",
+          "50x70": "images/rooms/serins-console-50x70.jpg",
+          "70x100": "images/rooms/serins-console-70x100.jpg"
+        }
+      }
+    ]
+  },
+  "robin": {
+    "print": "images/rooms/robin-print.jpg",
+    "rooms": [
+      {
+        "id": "dining",
+        "label": "Kitchen",
+        "sizes": {
+          "40x50": "images/rooms/robin-dining-40x50.jpg",
+          "50x70": "images/rooms/robin-dining-50x70.jpg",
+          "70x100": "images/rooms/robin-dining-70x100.jpg"
+        }
+      },
+      {
+        "id": "sideboard",
+        "label": "Living room",
+        "sizes": {
+          "40x50": "images/rooms/robin-sideboard-40x50.jpg",
+          "50x70": "images/rooms/robin-sideboard-50x70.jpg",
+          "70x100": "images/rooms/robin-sideboard-70x100.jpg"
+        }
+      }
+    ]
+  },
+  "hoopoe": {
+    "print": "images/rooms/hoopoe-print.jpg",
+    "rooms": [
+      {
+        "id": "white-living",
+        "label": "Living room",
+        "sizes": {
+          "40x50": "images/rooms/hoopoe-white-living-40x50.jpg",
+          "50x70": "images/rooms/hoopoe-white-living-50x70.jpg"
+        }
+      },
+      {
+        "id": "sideboard",
+        "label": "Living room",
+        "sizes": {
+          "40x50": "images/rooms/hoopoe-sideboard-40x50.jpg",
+          "50x70": "images/rooms/hoopoe-sideboard-50x70.jpg"
+        }
+      }
+    ]
   }
 };

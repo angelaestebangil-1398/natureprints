@@ -25,7 +25,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 import make_mockup as mm  # noqa: E402
-from clear_wall import clear_box, clear_lr, clear_profile, clear_tb  # noqa: E402
+from clear_wall import clear_box, clear_fit, clear_lr, clear_profile, clear_tb  # noqa: E402
+import perspective  # noqa: E402
 
 SIZES = {"40x50": (50, 40), "50x70": (70, 50), "70x100": (100, 70)}  # landscape w × h cm
 ORDER = ["40x50", "50x70", "70x100"]
@@ -51,23 +52,47 @@ ROOMS = {
     "bath-tiles":    dict(label="Bathroom", ppc=5.6, cx=300, bottom=345, crop=(0, 8, 1362, 1021), max="50x70"),
 }
 
+# Rooms placed with perspective: "ref" is a rectangle that really exists on the wall
+# (the old frame): its 4 corners in the photo (TL, TR, BR, BL) and its real size in cm.
+# cx / bottom are in wall cm, measured from that rectangle's top-left corner.
+# only: sizes to render here (others show the nearest rendered size).
+PROOMS = {
+    "chair":     dict(label="Living room", ref=([(410, 137.5), (580, 137.5), (580, 367.5), (410, 367.5)], 50, 68),
+                      cx=23.5, bottom=68, max="50x70", crop=(100, 160, 740, 555),
+                      lr=[((403, 130, 588, 374), (392, 401), (392, 401))],
+                      keep=[((586, 255, 640, 378), "notwall")]),
+    "gold-sofa": dict(label="Living room", ref=([(352.5, 109), (463.5, 109), (463.5, 269), (352.5, 269)], 60, 86),
+                      cx=69, bottom=86, crop=(125, 0, 675, 506),
+                      fit=[[(351, 107), (465, 107), (465, 271), (351, 271)], [(492, 107), (607, 107), (607, 271), (492, 271)]]),
+    "loft":      dict(label="Living room", ref=([(219, 556), (346, 596), (345, 776), (212.5, 762.5)], 40, 50),
+                      cx=None, bottom=50, max="50x70", crop=(0, 430, 900, 675),
+                      fit=[[(217, 553), (349, 594), (348, 779), (210, 765)], [(387, 602), (489, 632), (489, 795), (386, 785)]]),
+    "dresser":   dict(label="Bedroom", ref=([(277, 15), (631, 15), (631, 255), (277, 255)], 100, 68),
+                      cx=50, bottom=68, only=["70x100"], crop=(50, 0, 800, 600),
+                      keep=[((238, 100, 300, 250), "bluish"), ((520, 235, 575, 275), "dark")]),
+}
+# loft: centre the print between the left edge of the left frame and the right edge of the right frame
+_H = perspective.wall_to_image(*PROOMS["loft"]["ref"])
+_right_edge_cm = perspective.apply(__import__("numpy").linalg.inv(_H), [(486, 634), (486, 792.5)])
+PROOMS["loft"]["cx"] = round((0 + sum(p[0] for p in _right_edge_cm) / 2) / 2, 1)
+
 # Which rooms each print is shown in (first one = main picture)
 PLAN = {
-    "mallard-drake":    ["dining", "cabinet"],
-    "mallard-hen":      ["kitchen-shelf", "sideboard"],
-    "parakeet":         ["teal-living", "console"],
-    "crested-tit":      ["grey-sofa", "cabinet"],
-    "orb-spider":       ["console", "white-living"],
-    "snipe":            ["white-living", "sideboard"],
-    "mallard-profile":  ["bath-concrete", "bath-tiles"],
-    "mallard-portrait": ["bath-tiles", "bath-concrete"],
-    "ibex-mountain":    ["sideboard", "teal-living"],
-    "ibex-portrait":    ["white-living", "cabinet"],
-    "blue-tit":         ["cabinet", "grey-sofa"],
-    "monk-parakeet":    ["teal-living", "dining"],
-    "serins":           ["kitchen-shelf", "console"],
-    "robin":            ["dining", "sideboard"],
-    "hoopoe":           ["white-living", "sideboard"],
+    "mallard-drake":    ["dining", "cabinet", "dresser"],
+    "mallard-hen":      ["kitchen-shelf", "sideboard", "gold-sofa"],
+    "parakeet":         ["teal-living", "console", "chair"],
+    "crested-tit":      ["grey-sofa", "cabinet", "loft"],
+    "orb-spider":       ["console", "white-living", "dresser"],
+    "snipe":            ["white-living", "sideboard", "gold-sofa"],
+    "mallard-profile":  ["bath-concrete", "bath-tiles", "chair"],
+    "mallard-portrait": ["bath-tiles", "bath-concrete", "loft"],
+    "ibex-mountain":    ["sideboard", "teal-living", "gold-sofa"],
+    "ibex-portrait":    ["white-living", "cabinet", "dresser"],
+    "blue-tit":         ["cabinet", "grey-sofa", "loft"],
+    "monk-parakeet":    ["teal-living", "dining", "chair"],
+    "serins":           ["kitchen-shelf", "console", "gold-sofa"],
+    "robin":            ["dining", "sideboard", "loft"],
+    "hoopoe":           ["white-living", "sideboard", "chair"],
 }
 
 # Sizes each print is sold in (keep in line with products.js)
@@ -83,12 +108,14 @@ def cleared_room(name):
     if os.path.exists(cache):
         return cache
     os.makedirs(os.path.dirname(cache), exist_ok=True)
-    cfg = ROOMS[name]
+    cfg = ROOMS.get(name) or PROOMS[name]
     im = Image.open(os.path.join(ROOT, "rooms-src", name + ".jpg")).convert("RGB")
     for mode, box, margin in cfg.get("clear", []):
         im = clear_box(im, box, margin=margin, feather=25 if mode == "hf" else 0)
     if "lr" in cfg:
         im = clear_lr(im, cfg["lr"])
+    if "fit" in cfg:
+        im = clear_fit(im, cfg["fit"])
     if "tb" in cfg:
         im = clear_tb(im, cfg["tb"])
     if "profile" in cfg:
@@ -114,6 +141,23 @@ def main():
         mm.studio(photo, os.path.join(ROOT, entry["print"]))
         finish(os.path.join(ROOT, entry["print"]))
         for r in rooms:
+            if r in PROOMS:
+                cfg = PROOMS[r]
+                base = cleared_room(r)
+                sizes = {}
+                for size in LIMITED.get(pid, ORDER):
+                    if "only" in cfg and size not in cfg["only"]:
+                        continue
+                    if "max" in cfg and ORDER.index(size) > ORDER.index(cfg["max"]):
+                        continue
+                    w, h = SIZES[size]
+                    rel = f"images/rooms/{pid}-{r}-{size}.jpg"
+                    perspective.mockup(base, os.path.join(ROOT, "rooms-src", r + ".jpg"), photo, os.path.join(ROOT, rel), cfg, w, h)
+                    finish(os.path.join(ROOT, rel))
+                    sizes[size] = rel
+                if sizes:
+                    entry["rooms"].append({"id": r, "label": cfg["label"], "sizes": sizes})
+                continue
             cfg = ROOMS[r]
             base = cleared_room(r)
             sizes = {}

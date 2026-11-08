@@ -63,7 +63,9 @@ def clear_lr(im, boxes, feather=16):
     def avg(strip, y):
         a, b = strip
         return [sum(px[x, y][k] for x in range(a, b)) / (b - a) for k in range(3)]
-    for (x0, y0, x1, y1), left, right in boxes:
+    for entry in boxes:
+        (x0, y0, x1, y1), left, right = entry[:3]
+        polys = entry[3] if len(entry) > 3 else None
         for y in range(y0, y1):
             R = avg(right, y)
             L = avg(left, y) if left else R
@@ -71,8 +73,12 @@ def clear_lr(im, boxes, feather=16):
                 t = (x - x0) / max(1, x1 - x0)
                 n = random.uniform(-1.0, 1.0)
                 px[x, y] = tuple(int(L[k] * (1 - t) + R[k] * t + n) for k in range(3))
-        ImageDraw.Draw(mask).rectangle((x0, y0, x1 - 1, y1 - 1), fill=255)
-    mask = mask.filter(ImageFilter.GaussianBlur(feather / 3))
+        if polys:  # only repaint where the old frames were (plus a few px)
+            for poly in polys:
+                ImageDraw.Draw(mask).polygon(poly, fill=255)
+        else:
+            ImageDraw.Draw(mask).rectangle((x0, y0, x1 - 1, y1 - 1), fill=255)
+    mask = mask.filter(ImageFilter.MaxFilter(9)).filter(ImageFilter.GaussianBlur(feather / 4))
     return Image.composite(im, original, mask)
 
 
@@ -96,3 +102,32 @@ def clear_tb(im, boxes, feather=16):
         ImageDraw.Draw(mask).rectangle((x0, y0, x1 - 1, y1 - 1), fill=255)
     mask = mask.filter(ImageFilter.GaussianBlur(feather / 3))
     return Image.composite(im, original, mask)
+
+
+def clear_fit(im, polys, ring=30, pad=8, feather=10):
+    """Repaint old frames (polygons) with a smooth wall: fit the wall's lighting
+    (a gentle 2D curve) to a ring of wall pixels around the frames, then fill."""
+    import numpy as np
+    from PIL import ImageDraw
+    frames = Image.new("L", im.size, 0)
+    for poly in polys:
+        ImageDraw.Draw(frames).polygon(poly, fill=255)
+    inner = frames.filter(ImageFilter.MaxFilter(2 * pad + 1))
+    outer = frames.filter(ImageFilter.MaxFilter(2 * (pad + ring) + 1))
+    a = np.asarray(im).astype(float)
+    ring_m = (np.asarray(outer) > 0) & ~(np.asarray(inner) > 0)
+    ys, xs = np.nonzero(ring_m)
+    sx, sy = im.width, im.height
+    def feats(x, y):
+        x, y = x / sx, y / sy
+        return np.stack([np.ones_like(x), x, y, x * x, x * y, y * y, x ** 3, y ** 3], 1)
+    F = feats(xs.astype(float), ys.astype(float))
+    fy, fx = np.nonzero(np.asarray(inner) > 0)
+    G = feats(fx.astype(float), fy.astype(float))
+    out = a.copy()
+    for c in range(3):
+        coef, *_ = np.linalg.lstsq(F, a[ys, xs, c], rcond=None)
+        out[fy, fx, c] = G @ coef + np.random.uniform(-1.0, 1.0, len(fx))
+    filled = Image.fromarray(np.clip(out, 0, 255).astype("uint8"))
+    mask = inner.filter(ImageFilter.GaussianBlur(feather / 3))
+    return Image.composite(filled, im, mask)

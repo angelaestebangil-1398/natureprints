@@ -422,7 +422,7 @@ function renderProduct() {
     $("[data-caption]").textContent = state.view > 0 && state.view < v.length - 1
       ? (shown === state.size
         ? `Shown at real scale: ${sizeLabel(p, sizeById(shown))}. Frame not included.`
-        : `This wall fits up to ${sizeLabel(p, sizeById(shown))}, shown at that size. Frame not included.`)
+        : `Shown here at ${sizeLabel(p, sizeById(shown))}. Frame not included.`)
       : "";
 
     $("[data-price]").textContent = money(unitPrice(state.size, state.finish) * state.qty);

@@ -250,13 +250,6 @@ function renderLayout() {
             <a href="policies.html#privacy">Privacy</a>
             <a href="mailto:${SHOP.email}">Contact</a>
           </div>
-          <div>
-            <h4>Newsletter</h4>
-            <p style="margin-top:0">New prints and stories from the field, a few times a year.</p>
-            <form class="newsletter" onsubmit="event.preventDefault(); toast('Thanks! (Newsletter coming soon)')">
-              <input type="email" placeholder="Your email" required aria-label="Email"><button>Join</button>
-            </form>
-          </div>
         </div>
         <div class="footer-bottom">
           <span>© ${new Date().getFullYear()} ${SHOP.name}. All photographs are copyrighted.</span>
@@ -375,10 +368,6 @@ function checkout() {
 function renderHome() {
   document.querySelectorAll("[data-ico]").forEach((el) => (el.innerHTML = ICON[el.dataset.ico]));
   const hero = PRODUCTS.find((p) => p.id === "ibex-portrait") || PRODUCTS[0];
-  const heroM = mockFor(hero);
-  $("[data-hero-room]").innerHTML = heroM
-    ? photoView(roomShot(heroM.rooms[0], "70x100").src, hero.title)
-    : roomHTML(hero, "70x100", "living");
   const second = PRODUCTS.find((p) => p.id === "orb-spider") || PRODUCTS[1];
   const secondM = mockFor(second);
   $("[data-bath-room]").innerHTML = secondM

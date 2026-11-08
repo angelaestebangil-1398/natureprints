@@ -48,6 +48,24 @@ const MOCKUPS = {
             "wood": "images/rooms/mallard-drake-dresser-70x100-wood.jpg"
           }
         }
+      },
+      {
+        "id": "beige-sofa",
+        "label": "Living room",
+        "sizes": {
+          "40x50": {
+            "white": "images/rooms/mallard-drake-beige-sofa-40x50-white.jpg",
+            "wood": "images/rooms/mallard-drake-beige-sofa-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/mallard-drake-beige-sofa-50x70-white.jpg",
+            "wood": "images/rooms/mallard-drake-beige-sofa-50x70-wood.jpg"
+          },
+          "70x100": {
+            "white": "images/rooms/mallard-drake-beige-sofa-70x100-white.jpg",
+            "wood": "images/rooms/mallard-drake-beige-sofa-70x100-wood.jpg"
+          }
+        }
       }
     ]
   },
@@ -99,6 +117,24 @@ const MOCKUPS = {
             "wood": "images/rooms/mallard-hen-gold-sofa-70x100-wood.jpg"
           }
         }
+      },
+      {
+        "id": "beige-sofa",
+        "label": "Living room",
+        "sizes": {
+          "40x50": {
+            "white": "images/rooms/mallard-hen-beige-sofa-40x50-white.jpg",
+            "wood": "images/rooms/mallard-hen-beige-sofa-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/mallard-hen-beige-sofa-50x70-white.jpg",
+            "wood": "images/rooms/mallard-hen-beige-sofa-50x70-wood.jpg"
+          },
+          "70x100": {
+            "white": "images/rooms/mallard-hen-beige-sofa-70x100-white.jpg",
+            "wood": "images/rooms/mallard-hen-beige-sofa-70x100-wood.jpg"
+          }
+        }
       }
     ]
   },
@@ -134,6 +170,24 @@ const MOCKUPS = {
           "50x70": {
             "white": "images/rooms/parakeet-chair-50x70-white.jpg",
             "wood": "images/rooms/parakeet-chair-50x70-wood.jpg"
+          }
+        }
+      },
+      {
+        "id": "plant-sofa",
+        "label": "Living room",
+        "sizes": {
+          "40x50": {
+            "white": "images/rooms/parakeet-plant-sofa-40x50-white.jpg",
+            "wood": "images/rooms/parakeet-plant-sofa-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/parakeet-plant-sofa-50x70-white.jpg",
+            "wood": "images/rooms/parakeet-plant-sofa-50x70-wood.jpg"
+          },
+          "70x100": {
+            "white": "images/rooms/parakeet-plant-sofa-70x100-white.jpg",
+            "wood": "images/rooms/parakeet-plant-sofa-70x100-wood.jpg"
           }
         }
       }
@@ -181,6 +235,20 @@ const MOCKUPS = {
           "50x70": {
             "white": "images/rooms/crested-tit-loft-50x70-white.jpg",
             "wood": "images/rooms/crested-tit-loft-50x70-wood.jpg"
+          }
+        }
+      },
+      {
+        "id": "desk",
+        "label": "Office",
+        "sizes": {
+          "40x50": {
+            "white": "images/rooms/crested-tit-desk-40x50-white.jpg",
+            "wood": "images/rooms/crested-tit-desk-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/crested-tit-desk-50x70-white.jpg",
+            "wood": "images/rooms/crested-tit-desk-50x70-wood.jpg"
           }
         }
       }
@@ -232,6 +300,20 @@ const MOCKUPS = {
           "70x100": {
             "white": "images/rooms/orb-spider-dresser-70x100-white.jpg",
             "wood": "images/rooms/orb-spider-dresser-70x100-wood.jpg"
+          }
+        }
+      },
+      {
+        "id": "desk",
+        "label": "Office",
+        "sizes": {
+          "40x50": {
+            "white": "images/rooms/orb-spider-desk-40x50-white.jpg",
+            "wood": "images/rooms/orb-spider-desk-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/orb-spider-desk-50x70-white.jpg",
+            "wood": "images/rooms/orb-spider-desk-50x70-wood.jpg"
           }
         }
       }
@@ -291,6 +373,20 @@ const MOCKUPS = {
           "70x100": {
             "white": "images/rooms/snipe-gold-sofa-70x100-white.jpg",
             "wood": "images/rooms/snipe-gold-sofa-70x100-wood.jpg"
+          }
+        }
+      },
+      {
+        "id": "armchair-panel",
+        "label": "Living room",
+        "sizes": {
+          "40x50": {
+            "white": "images/rooms/snipe-armchair-panel-40x50-white.jpg",
+            "wood": "images/rooms/snipe-armchair-panel-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/snipe-armchair-panel-50x70-white.jpg",
+            "wood": "images/rooms/snipe-armchair-panel-50x70-wood.jpg"
           }
         }
       }
@@ -354,6 +450,24 @@ const MOCKUPS = {
             "wood": "images/rooms/mallard-profile-bath-beige-40x50-wood.jpg"
           }
         }
+      },
+      {
+        "id": "plant-sofa",
+        "label": "Living room",
+        "sizes": {
+          "40x50": {
+            "white": "images/rooms/mallard-profile-plant-sofa-40x50-white.jpg",
+            "wood": "images/rooms/mallard-profile-plant-sofa-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/mallard-profile-plant-sofa-50x70-white.jpg",
+            "wood": "images/rooms/mallard-profile-plant-sofa-50x70-wood.jpg"
+          },
+          "70x100": {
+            "white": "images/rooms/mallard-profile-plant-sofa-70x100-white.jpg",
+            "wood": "images/rooms/mallard-profile-plant-sofa-70x100-wood.jpg"
+          }
+        }
       }
     ]
   },
@@ -415,6 +529,24 @@ const MOCKUPS = {
             "wood": "images/rooms/mallard-portrait-bath-beige-40x50-wood.jpg"
           }
         }
+      },
+      {
+        "id": "plant-sofa",
+        "label": "Living room",
+        "sizes": {
+          "40x50": {
+            "white": "images/rooms/mallard-portrait-plant-sofa-40x50-white.jpg",
+            "wood": "images/rooms/mallard-portrait-plant-sofa-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/mallard-portrait-plant-sofa-50x70-white.jpg",
+            "wood": "images/rooms/mallard-portrait-plant-sofa-50x70-wood.jpg"
+          },
+          "70x100": {
+            "white": "images/rooms/mallard-portrait-plant-sofa-70x100-white.jpg",
+            "wood": "images/rooms/mallard-portrait-plant-sofa-70x100-wood.jpg"
+          }
+        }
       }
     ]
   },
@@ -454,6 +586,20 @@ const MOCKUPS = {
           "70x100": {
             "white": "images/rooms/ibex-mountain-gold-sofa-70x100-white.jpg",
             "wood": "images/rooms/ibex-mountain-gold-sofa-70x100-wood.jpg"
+          }
+        }
+      },
+      {
+        "id": "armchair-panel",
+        "label": "Living room",
+        "sizes": {
+          "40x50": {
+            "white": "images/rooms/ibex-mountain-armchair-panel-40x50-white.jpg",
+            "wood": "images/rooms/ibex-mountain-armchair-panel-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/ibex-mountain-armchair-panel-50x70-white.jpg",
+            "wood": "images/rooms/ibex-mountain-armchair-panel-50x70-wood.jpg"
           }
         }
       }
@@ -505,6 +651,24 @@ const MOCKUPS = {
           "70x100": {
             "white": "images/rooms/ibex-portrait-dresser-70x100-white.jpg",
             "wood": "images/rooms/ibex-portrait-dresser-70x100-wood.jpg"
+          }
+        }
+      },
+      {
+        "id": "beige-sofa",
+        "label": "Living room",
+        "sizes": {
+          "40x50": {
+            "white": "images/rooms/ibex-portrait-beige-sofa-40x50-white.jpg",
+            "wood": "images/rooms/ibex-portrait-beige-sofa-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/ibex-portrait-beige-sofa-50x70-white.jpg",
+            "wood": "images/rooms/ibex-portrait-beige-sofa-50x70-wood.jpg"
+          },
+          "70x100": {
+            "white": "images/rooms/ibex-portrait-beige-sofa-70x100-white.jpg",
+            "wood": "images/rooms/ibex-portrait-beige-sofa-70x100-wood.jpg"
           }
         }
       }
@@ -572,6 +736,20 @@ const MOCKUPS = {
             "wood": "images/rooms/blue-tit-nursery-70x100-wood.jpg"
           }
         }
+      },
+      {
+        "id": "armchair-panel",
+        "label": "Living room",
+        "sizes": {
+          "40x50": {
+            "white": "images/rooms/blue-tit-armchair-panel-40x50-white.jpg",
+            "wood": "images/rooms/blue-tit-armchair-panel-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/blue-tit-armchair-panel-50x70-white.jpg",
+            "wood": "images/rooms/blue-tit-armchair-panel-50x70-wood.jpg"
+          }
+        }
       }
     ]
   },
@@ -627,6 +805,24 @@ const MOCKUPS = {
             "wood": "images/rooms/monk-parakeet-chair-50x70-wood.jpg"
           }
         }
+      },
+      {
+        "id": "beige-sofa",
+        "label": "Living room",
+        "sizes": {
+          "40x50": {
+            "white": "images/rooms/monk-parakeet-beige-sofa-40x50-white.jpg",
+            "wood": "images/rooms/monk-parakeet-beige-sofa-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/monk-parakeet-beige-sofa-50x70-white.jpg",
+            "wood": "images/rooms/monk-parakeet-beige-sofa-50x70-wood.jpg"
+          },
+          "70x100": {
+            "white": "images/rooms/monk-parakeet-beige-sofa-70x100-white.jpg",
+            "wood": "images/rooms/monk-parakeet-beige-sofa-70x100-wood.jpg"
+          }
+        }
       }
     ]
   },
@@ -668,6 +864,20 @@ const MOCKUPS = {
           "70x100": {
             "white": "images/rooms/serins-nursery-70x100-white.jpg",
             "wood": "images/rooms/serins-nursery-70x100-wood.jpg"
+          }
+        }
+      },
+      {
+        "id": "desk",
+        "label": "Office",
+        "sizes": {
+          "40x50": {
+            "white": "images/rooms/serins-desk-40x50-white.jpg",
+            "wood": "images/rooms/serins-desk-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/serins-desk-50x70-white.jpg",
+            "wood": "images/rooms/serins-desk-50x70-wood.jpg"
           }
         }
       }
@@ -735,6 +945,20 @@ const MOCKUPS = {
             "wood": "images/rooms/robin-nursery-70x100-wood.jpg"
           }
         }
+      },
+      {
+        "id": "armchair-panel",
+        "label": "Living room",
+        "sizes": {
+          "40x50": {
+            "white": "images/rooms/robin-armchair-panel-40x50-white.jpg",
+            "wood": "images/rooms/robin-armchair-panel-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/robin-armchair-panel-50x70-white.jpg",
+            "wood": "images/rooms/robin-armchair-panel-50x70-wood.jpg"
+          }
+        }
       }
     ]
   },
@@ -780,6 +1004,20 @@ const MOCKUPS = {
           "50x70": {
             "white": "images/rooms/hoopoe-chair-50x70-white.jpg",
             "wood": "images/rooms/hoopoe-chair-50x70-wood.jpg"
+          }
+        }
+      },
+      {
+        "id": "desk",
+        "label": "Office",
+        "sizes": {
+          "40x50": {
+            "white": "images/rooms/hoopoe-desk-40x50-white.jpg",
+            "wood": "images/rooms/hoopoe-desk-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/hoopoe-desk-50x70-white.jpg",
+            "wood": "images/rooms/hoopoe-desk-50x70-wood.jpg"
           }
         }
       }

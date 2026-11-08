@@ -84,6 +84,17 @@ PROOMS = {
     "bath-beige": dict(label="Bathroom", ref=([(551, 104), (659, 76.5), (660, 225), (552.5, 230)], 30, 40),
                       cx=None, bottom=40, max="40x50", crop=(290, 0, 610, 458),
                       coons=[(545, 70, 666, 238), (704, 15, 888, 229), (321, 142, 367, 250)]),
+    "armchair-panel": dict(label="Living room", ref=([(383, 345), (631, 345), (631, 695), (383, 695)], 50, 70),
+                      cx=25, bottom=70, max="50x70", crop=(110, 150, 790, 1020),
+                      coons=[(376, 338, 638, 702)]),
+    "desk":      dict(label="Office", ref=([(494, 143), (680, 143), (680, 392), (494, 392)], 30, 40),
+                      cx=-6.6, bottom=37.3, max="50x70", crop=(60, 0, 840, 1123),
+                      coons=[(486, 135, 688, 400)]),
+    "beige-sofa": dict(label="Living room", ref=([(180, 108), (420, 108), (420, 290), (180, 290)], 60, 45),
+                      cx=67.5, bottom=55.5, crop=(0, 0, 900, 600),
+                      fit=[[(172, 100), (442, 100), (442, 308), (172, 308)], [(592, 26), (812, 26), (812, 270), (592, 270)]]),
+    "plant-sofa": dict(label="Living room", ref=([(300, 100), (790, 100), (790, 590), (300, 590)], 100, 100),
+                      cx=53, bottom=93.9, crop=(0, 0, 900, 1100)),
 }
 _Hb = perspective.wall_to_image(*PROOMS["bath-beige"]["ref"])
 _rb = perspective.apply(__import__("numpy").linalg.inv(_Hb), [(881, 22), (881, 212.5)])
@@ -95,21 +106,21 @@ PROOMS["loft"]["cx"] = round((0 + sum(p[0] for p in _right_edge_cm) / 2) / 2, 1)
 
 # Which rooms each print is shown in (first one = main picture)
 PLAN = {
-    "mallard-drake":    ["dining", "cabinet", "dresser"],
-    "mallard-hen":      ["kitchen-shelf", "sideboard", "gold-sofa"],
-    "parakeet":         ["teal-living", "chair"],
-    "crested-tit":      ["grey-sofa", "cabinet", "loft"],
-    "orb-spider":       ["gold-sofa", "white-living", "dresser"],
-    "snipe":            ["white-living", "sideboard", "gold-sofa"],
-    "mallard-profile":  ["bath-concrete", "bath-tiles", "chair", "bath-beige"],
-    "mallard-portrait": ["bath-tiles", "bath-concrete", "loft", "bath-beige"],
-    "ibex-mountain":    ["teal-living", "gold-sofa"],
-    "ibex-portrait":    ["white-living", "cabinet", "dresser"],
-    "blue-tit":         ["cabinet", "grey-sofa", "loft", "nursery"],
-    "monk-parakeet":    ["teal-living", "dining", "chair"],
-    "serins":           ["kitchen-shelf", "gold-sofa", "nursery"],
-    "robin":            ["dining", "sideboard", "loft", "nursery"],
-    "hoopoe":           ["white-living", "sideboard", "chair"],
+    "mallard-drake":    ["dining", "cabinet", "dresser", "beige-sofa"],
+    "mallard-hen":      ["kitchen-shelf", "sideboard", "gold-sofa", "beige-sofa"],
+    "parakeet":         ["teal-living", "chair", "plant-sofa"],
+    "crested-tit":      ["grey-sofa", "cabinet", "loft", "desk"],
+    "orb-spider":       ["gold-sofa", "white-living", "dresser", "desk"],
+    "snipe":            ["white-living", "sideboard", "gold-sofa", "armchair-panel"],
+    "mallard-profile":  ["bath-concrete", "bath-tiles", "chair", "bath-beige", "plant-sofa"],
+    "mallard-portrait": ["bath-tiles", "bath-concrete", "loft", "bath-beige", "plant-sofa"],
+    "ibex-mountain":    ["teal-living", "gold-sofa", "armchair-panel"],
+    "ibex-portrait":    ["white-living", "cabinet", "dresser", "beige-sofa"],
+    "blue-tit":         ["cabinet", "grey-sofa", "loft", "nursery", "armchair-panel"],
+    "monk-parakeet":    ["teal-living", "dining", "chair", "beige-sofa"],
+    "serins":           ["kitchen-shelf", "gold-sofa", "nursery", "desk"],
+    "robin":            ["dining", "sideboard", "loft", "nursery", "armchair-panel"],
+    "hoopoe":           ["white-living", "sideboard", "chair", "desk"],
 }
 
 # Sizes each print is sold in (keep in line with products.js)

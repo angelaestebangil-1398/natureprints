@@ -383,8 +383,9 @@ h3 { font-size: 20px; }
   .hero-badges-bar .wrap { gap: 10px 20px; }
 }
 /* ---------- About: Paolo's photo, chapters without numbers ---------- */
-.about-photo { margin: 40px 0 8px; aspect-ratio: 4/3; border-radius: var(--radius); overflow: hidden; background: var(--sand); position: relative; }
-.about-photo img { width: 100%; height: 100%; object-fit: cover; }
+.about-photo { margin: 40px auto 8px; max-width: 460px; aspect-ratio: 3/4; border-radius: var(--radius); overflow: hidden; background: var(--sand); position: relative; }
+.about-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 30% 50%; }
+.about-caption { text-align: center; font-size: 14px; color: var(--muted); margin: 10px 0 0; }
 .about-photo span { display: none; }
 .about-photo.empty img { display: none; }
 .about-photo.empty { display: grid; place-items: center; border: 1px dashed var(--sand-2); }

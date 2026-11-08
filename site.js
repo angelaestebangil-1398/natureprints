@@ -127,8 +127,8 @@ function roomHTML(p, sizeId, type = "living") {
 const mockFor = (p) => (typeof MOCKUPS !== "undefined" ? MOCKUPS[p.id] : null);
 
 // Picture of a room for the chosen size; if that wall can't fit it, the biggest size that fits.
-let FRAME = "white"; // frame colour shown in room pictures (preview only, frames are not sold)
-try { FRAME = localStorage.getItem("pl_frame") || "white"; } catch {}
+let FRAME = "wood"; // frame colour shown in room pictures (preview only, frames are not sold)
+try { FRAME = localStorage.getItem("pl_frame") || "wood"; } catch {}
 function setFrame(f) { FRAME = f; try { localStorage.setItem("pl_frame", f); } catch {} }
 
 function roomShot(room, sizeId, frame = FRAME) {
@@ -462,7 +462,7 @@ function renderProduct() {
     $("[data-finish-label]").textContent = finishById(state.finish).name;
     $("[data-qty]").textContent = state.qty;
     const fp = $("[data-frames]");
-    if (fp) fp.innerHTML = `Frame in pictures: ${["white", "wood"].map((f) => `<button class="${f === FRAME ? "active" : ""}" data-frame="${f}">${f === "white" ? "White" : "Wood"}</button>`).join("")}`;
+    if (fp) fp.innerHTML = `Frame in pictures: ${["wood", "white"].map((f) => `<button class="${f === FRAME ? "active" : ""}" data-frame="${f}">${f === "white" ? "White" : "Brown"}</button>`).join("")}`;
     const sb = $("[data-sets]");
     if (sb) {
       sb.hidden = !mySets.length;

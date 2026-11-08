@@ -208,20 +208,20 @@ const MOCKUPS = {
     "print": "images/rooms/orb-spider-print.jpg",
     "rooms": [
       {
-        "id": "console",
-        "label": "Office",
+        "id": "gold-sofa",
+        "label": "Living room",
         "sizes": {
           "40x50": {
-            "white": "images/rooms/orb-spider-console-40x50-white.jpg",
-            "wood": "images/rooms/orb-spider-console-40x50-wood.jpg"
+            "white": "images/rooms/orb-spider-gold-sofa-40x50-white.jpg",
+            "wood": "images/rooms/orb-spider-gold-sofa-40x50-wood.jpg"
           },
           "50x70": {
-            "white": "images/rooms/orb-spider-console-50x70-white.jpg",
-            "wood": "images/rooms/orb-spider-console-50x70-wood.jpg"
+            "white": "images/rooms/orb-spider-gold-sofa-50x70-white.jpg",
+            "wood": "images/rooms/orb-spider-gold-sofa-50x70-wood.jpg"
           },
           "70x100": {
-            "white": "images/rooms/orb-spider-console-70x100-white.jpg",
-            "wood": "images/rooms/orb-spider-console-70x100-wood.jpg"
+            "white": "images/rooms/orb-spider-gold-sofa-70x100-white.jpg",
+            "wood": "images/rooms/orb-spider-gold-sofa-70x100-wood.jpg"
           }
         }
       },
@@ -440,20 +440,6 @@ const MOCKUPS = {
     "print": "images/rooms/ibex-mountain-print.jpg",
     "rooms": [
       {
-        "id": "sideboard",
-        "label": "Living room",
-        "sizes": {
-          "40x50": {
-            "white": "images/rooms/ibex-mountain-sideboard-40x50-white.jpg",
-            "wood": "images/rooms/ibex-mountain-sideboard-40x50-wood.jpg"
-          },
-          "50x70": {
-            "white": "images/rooms/ibex-mountain-sideboard-50x70-white.jpg",
-            "wood": "images/rooms/ibex-mountain-sideboard-50x70-wood.jpg"
-          }
-        }
-      },
-      {
         "id": "teal-living",
         "label": "Living room",
         "sizes": {
@@ -464,6 +450,10 @@ const MOCKUPS = {
           "50x70": {
             "white": "images/rooms/ibex-mountain-teal-living-50x70-white.jpg",
             "wood": "images/rooms/ibex-mountain-teal-living-50x70-wood.jpg"
+          },
+          "70x100": {
+            "white": "images/rooms/ibex-mountain-teal-living-70x100-white.jpg",
+            "wood": "images/rooms/ibex-mountain-teal-living-70x100-wood.jpg"
           }
         }
       },
@@ -478,6 +468,10 @@ const MOCKUPS = {
           "50x70": {
             "white": "images/rooms/ibex-mountain-gold-sofa-50x70-white.jpg",
             "wood": "images/rooms/ibex-mountain-gold-sofa-50x70-wood.jpg"
+          },
+          "70x100": {
+            "white": "images/rooms/ibex-mountain-gold-sofa-70x100-white.jpg",
+            "wood": "images/rooms/ibex-mountain-gold-sofa-70x100-wood.jpg"
           }
         }
       }

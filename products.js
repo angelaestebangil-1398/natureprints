@@ -93,7 +93,6 @@ const PRODUCTS = [
     image: "images/ibex-mountain.jpg",
     thumb: "images/ibex-mountain-sm.jpg",
     description: "An Alpine ibex walks down a snowy slope above Chamonix, with the blue mountains of the valley behind.",
-    sizes: ["40x50", "50x70"], // smaller original, so no 70×100 (to check with the full file)
   },
   {
     no: 10,

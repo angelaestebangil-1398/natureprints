@@ -49,7 +49,6 @@ ROOMS = {
     "kitchen-shelf": dict(label="Kitchen", ppc=5.2, cx=343, bottom=512, crop=(0, 150, 687, 515), max="40x50",
                           clear=[("h", (60, 222, 562, 512), 20)]),
     "bath-concrete": dict(label="Bathroom", ppc=6.0, cx=915, bottom=520, crop=(0, 60, 1400, 1050)),
-    "bath-tiles":    dict(label="Bathroom", ppc=5.6, cx=300, bottom=345, crop=(0, 8, 1362, 1021), max="50x70"),
 }
 
 # Rooms placed with perspective: "ref" is a rectangle that really exists on the wall
@@ -70,6 +69,11 @@ PROOMS = {
     "dresser":   dict(label="Bedroom", ref=([(277, 15), (631, 15), (631, 255), (277, 255)], 100, 68),
                       cx=50, bottom=68, only=["70x100"], crop=(50, 0, 800, 600),
                       keep=[((238, 100, 300, 250), "bluish"), ((520, 235, 575, 275), "dark")]),
+    # Tiled bathroom: the wall turns away from the camera. Its perspective comes from the
+    # tile line (vanishing point about x=2212, y=560); the reference is a 100x70 cm area.
+    "bath-tiles": dict(label="Bathroom", ref=([(120, -104.2), (557, 34.5), (557, 373.9), (120, 324.8)], 100, 70),
+                      cx=35.7, bottom=70, max="50x70", crop=(0, 8, 1362, 1021),
+                      keep=[((430, 170, 600, 430), "green")]),
     "nursery":   dict(label="Bedroom", ref=([(287.5, 367.5), (440, 367.5), (440, 552.5), (287.5, 552.5)], 45, 54),
                       cx=52.8, bottom=54, only=["70x100"], crop=(30, 230, 840, 630),
                       coons=[(280, 361, 449, 562), (487, 363, 654, 562)]),
@@ -95,11 +99,11 @@ PLAN = {
     "mallard-hen":      ["kitchen-shelf", "sideboard", "gold-sofa"],
     "parakeet":         ["teal-living", "console", "chair"],
     "crested-tit":      ["grey-sofa", "cabinet", "loft"],
-    "orb-spider":       ["console", "white-living", "dresser"],
+    "orb-spider":       ["gold-sofa", "white-living", "dresser"],
     "snipe":            ["white-living", "sideboard", "gold-sofa"],
     "mallard-profile":  ["bath-concrete", "bath-tiles", "chair", "bath-beige"],
     "mallard-portrait": ["bath-tiles", "bath-concrete", "loft", "bath-beige"],
-    "ibex-mountain":    ["sideboard", "teal-living", "gold-sofa"],
+    "ibex-mountain":    ["teal-living", "gold-sofa"],
     "ibex-portrait":    ["white-living", "cabinet", "dresser"],
     "blue-tit":         ["cabinet", "grey-sofa", "loft", "nursery"],
     "monk-parakeet":    ["teal-living", "dining", "chair"],
@@ -109,7 +113,7 @@ PLAN = {
 }
 
 # Sizes each print is sold in (keep in line with products.js)
-LIMITED = {"crested-tit": ["40x50", "50x70"], "ibex-mountain": ["40x50", "50x70"], "hoopoe": ["40x50", "50x70"]}
+LIMITED = {"crested-tit": ["40x50", "50x70"], "hoopoe": ["40x50", "50x70"]}
 
 OUT = os.path.join(ROOT, "images", "rooms")
 WIDTH = 1400  # output width

@@ -33,6 +33,11 @@ def mockup(room_p, photo_p, out_p, ppc, cx, bottom, wcm, hcm, crop=None, light=N
     paper.paste(inner, (border, border))
     art = Image.new("RGB", (W, H), frame_color)
     art.paste(paper, (frame, frame))
+    if sum(frame_color) <= 450:  # wood frame: darker edges give it depth
+        d = ImageDraw.Draw(art)
+        dark = tuple(int(c * 0.72) for c in frame_color)
+        d.rectangle((0, 0, W - 1, H - 1), outline=dark)
+        d.rectangle((frame - 1, frame - 1, W - frame, H - frame), outline=dark)
     if sum(frame_color) > 450:  # light frame: outline it so it reads against the wall
         d = ImageDraw.Draw(art)
         d.rectangle((0, 0, W - 1, H - 1), outline=FRAME_EDGE)

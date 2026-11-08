@@ -54,6 +54,11 @@ def build_art(photo_p, wcm, hcm, px_per_cm=12, frame_color=None, border_ratio=No
     paper.paste(inner.crop((l, t, l + iw, t + ih)), (border, border))
     art = Image.new("RGB", (W, H), frame_color)
     art.paste(paper, (frame, frame))
+    if sum(frame_color) <= 450:
+        d = ImageDraw.Draw(art)
+        dark = tuple(int(c * 0.72) for c in frame_color)
+        d.rectangle((0, 0, W - 1, H - 1), outline=dark, width=2)
+        d.rectangle((frame - 1, frame - 1, W - frame, H - frame), outline=dark, width=2)
     if sum(frame_color) > 450:
         d = ImageDraw.Draw(art)
         d.rectangle((0, 0, W - 1, H - 1), outline=mm.FRAME_EDGE, width=2)

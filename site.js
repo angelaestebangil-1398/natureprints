@@ -127,13 +127,50 @@ function roomHTML(p, sizeId, type = "living") {
 const mockFor = (p) => (typeof MOCKUPS !== "undefined" ? MOCKUPS[p.id] : null);
 
 // Picture of a room for the chosen size; if that wall can't fit it, the biggest size that fits.
-function roomShot(room, sizeId) {
+let FRAME = "white"; // frame colour shown in room pictures (preview only, frames are not sold)
+try { FRAME = localStorage.getItem("pl_frame") || "white"; } catch {}
+function setFrame(f) { FRAME = f; try { localStorage.setItem("pl_frame", f); } catch {} }
+
+function roomShot(room, sizeId, frame = FRAME) {
   const order = SIZES.map((s) => s.id);
   let i = order.indexOf(sizeId);
   while (i >= 0 && !room.sizes[order[i]]) i--;
   const shown = i >= 0 ? order[i] : Object.keys(room.sizes)[0];
-  return { src: room.sizes[shown], shown };
+  const pic = room.sizes[shown];
+  return { src: typeof pic === "string" ? pic : pic[frame] || pic.white, shown };
 }
+
+/* ---------- Sets: two prints that go together ---------- */
+const allSets = () => (typeof SETS !== "undefined" ? SETS : []);
+const setPrice = (st, finishId = FINISHES[0].id) => st.items.length * unitPrice(st.size, finishId);
+function setCardHTML(st, frame = "white") {
+  const [a, b] = st.items.map((id) => PRODUCTS.find((x) => x.id === id));
+  return `
+    <div class="set-card">
+      <div class="set-img"><img src="${st.images[frame] || st.images.white}" alt="${st.title}: ${a.title} and ${b.title}" loading="lazy"></div>
+      <div class="set-body">
+        <h3>${st.title}</h3>
+        <p class="muted">Set of 2 · <a href="product.html?id=${a.id}">${a.title}</a> + <a href="product.html?id=${b.id}">${b.title}</a></p>
+        <div class="set-buy"><span>${sizeLabel(a, sizeById(st.size))} each · <b>${money(setPrice(st))}</b></span>
+        <button class="btn" data-add-set="${st.id}">Add set to cart</button></div>
+      </div>
+    </div>`;
+}
+function addSetToCart(setId, finishId = FINISHES[0].id) {
+  const st = allSets().find((x) => x.id === setId);
+  if (!st) return;
+  const cart = getCart();
+  st.items.forEach((id) => {
+    const found = cart.find((i) => i.id === id && i.size === st.size && i.finish === finishId);
+    if (found) found.qty += 1; else cart.push({ id, size: st.size, finish: finishId, qty: 1 });
+  });
+  saveCart(cart);
+  openCart();
+}
+document.addEventListener("click", (e) => {
+  const b = e.target.closest("[data-add-set]");
+  if (b) addSetToCart(b.dataset.addSet, b.dataset.finish);
+});
 const photoView = (src, alt) => `<div class="view-photo"><img src="${src}" alt="${alt}"></div>`;
 
 /* ---------- Product card ---------- */
@@ -357,6 +394,8 @@ function renderHome() {
   }).join("");
 
 
+  const hs = $("[data-home-sets]");
+  if (hs) hs.innerHTML = allSets().map((st) => setCardHTML(st, "wood")).join("");
   $("[data-featured]").innerHTML = PRODUCTS.slice(0, 6).map(cardHTML).join("");
 }
 
@@ -390,6 +429,7 @@ function renderProduct() {
   document.title = `${p.title} · ${SHOP.name}`;
   const sizes = sizesFor(p);
   const state = { size: sizes[Math.min(1, sizes.length - 1)].id, finish: FINISHES[0].id, qty: 1, view: 0 };
+  const mySets = allSets().filter((st) => st.items.includes(p.id));
 
   $("[data-crumb]").innerHTML = `<a href="index.html">Home</a> / <a href="shop.html?cat=${p.category}">${catName(p.category)}</a> / ${p.title}`;
 
@@ -432,6 +472,13 @@ function renderProduct() {
     $("[data-size-label]").textContent = sizeLabel(p, sizeById(state.size));
     $("[data-finish-label]").textContent = finishById(state.finish).name;
     $("[data-qty]").textContent = state.qty;
+    const fp = $("[data-frames]");
+    if (fp) fp.innerHTML = `Frame in pictures: ${["white", "wood"].map((f) => `<button class="${f === FRAME ? "active" : ""}" data-frame="${f}">${f === "white" ? "White" : "Wood"}</button>`).join("")}`;
+    const sb = $("[data-sets]");
+    if (sb) {
+      sb.hidden = !mySets.length;
+      $("[data-set-cards]").innerHTML = mySets.map((st) => setCardHTML(st, FRAME)).join("");
+    }
   }
 
   $("[data-title]").textContent = p.title;
@@ -441,8 +488,9 @@ function renderProduct() {
   $("[data-place]").textContent = `${COLLECTION.number}: ${COLLECTION.name}`;
 
   document.addEventListener("click", (e) => {
-    const t = e.target.closest("[data-view],[data-size],[data-finish],[data-qty-d],[data-add]");
+    const t = e.target.closest("[data-view],[data-size],[data-finish],[data-qty-d],[data-add],[data-frame]");
     if (!t) return;
+    if (t.dataset.frame) setFrame(t.dataset.frame);
     if (t.dataset.view) state.view = +t.dataset.view;
     if (t.dataset.size) state.size = t.dataset.size;
     if (t.dataset.finish) state.finish = t.dataset.finish;

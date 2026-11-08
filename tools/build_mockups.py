@@ -147,6 +147,55 @@ def finish(path):
     im.save(path, quality=82, optimize=True, progressive=True)
 
 
+FRAMES = {"white": (243, 241, 237), "wood": (122, 84, 52)}  # frame colours shown on the website
+
+# Sets: two prints that go together, hung side by side in one room.
+# size: size of each print; gap: cm between them.
+SETS = [
+    dict(id="parakeets", title="The Parakeets", items=["parakeet", "monk-parakeet"], room="teal-living", size="50x70", gap=10),
+    dict(id="pond", title="Life on the Pond", items=["mallard-drake", "mallard-hen"], room="sideboard", size="50x70", gap=10),
+    dict(id="emerald", title="Emerald Mallards", items=["mallard-profile", "mallard-portrait"], room="gold-sofa", size="40x50", gap=10),
+    dict(id="ibex", title="Alpine Ibex", items=["ibex-mountain", "ibex-portrait"], room="white-living", size="50x70", gap=12),
+    dict(id="songbirds", title="Garden Songbirds", items=["blue-tit", "robin"], room="cabinet", size="40x50", gap=10),
+    dict(id="pines", title="Birds of the Pines", items=["crested-tit", "serins"], room="loft", size="40x50", gap=10),
+]
+
+
+def render(room, pid, size, frame, out_rel, base=None, cx_shift=0, crop=True):
+    """One print in one room. base: image to draw on (default: the cleared room).
+    cx_shift: move the print sideways (cm). crop=False keeps the full room (for chaining)."""
+    photo = os.path.join(ROOT, "images", pid + ".jpg")
+    out = os.path.join(ROOT, out_rel)
+    base = base or cleared_room(room)
+    w, h = SIZES[size]
+    mm.FRAME_COLOR = FRAMES[frame]
+    if room in PROOMS:
+        cfg = dict(PROOMS[room], cx=PROOMS[room]["cx"] + cx_shift)
+        if not crop:
+            cfg["crop"] = None
+            cfg["keep"] = []
+        perspective.mockup(base, os.path.join(ROOT, "rooms-src", room + ".jpg"), photo, out, cfg, w, h)
+    else:
+        cfg = ROOMS[room]
+        mm.mockup(base, photo, out, cfg["ppc"], cfg["cx"] + cx_shift * cfg["ppc"], cfg["bottom"], w, h,
+                  cfg["crop"] if crop else None, cfg.get("light"))
+    if crop:
+        finish(out)
+    return out
+
+
+def sizes_for(pid, room):
+    cfg = ROOMS.get(room) or PROOMS[room]
+    out = []
+    for size in LIMITED.get(pid, ORDER):
+        if "only" in cfg and size not in cfg["only"]:
+            continue
+        if "max" in cfg and ORDER.index(size) > ORDER.index(cfg["max"]):
+            continue
+        out.append(size)
+    return out
+
+
 def main():
     os.makedirs(OUT, exist_ok=True)
     data = {}
@@ -156,40 +205,38 @@ def main():
         mm.studio(photo, os.path.join(ROOT, entry["print"]))
         finish(os.path.join(ROOT, entry["print"]))
         for r in rooms:
-            if r in PROOMS:
-                cfg = PROOMS[r]
-                base = cleared_room(r)
-                sizes = {}
-                for size in LIMITED.get(pid, ORDER):
-                    if "only" in cfg and size not in cfg["only"]:
-                        continue
-                    if "max" in cfg and ORDER.index(size) > ORDER.index(cfg["max"]):
-                        continue
-                    w, h = SIZES[size]
-                    rel = f"images/rooms/{pid}-{r}-{size}.jpg"
-                    perspective.mockup(base, os.path.join(ROOT, "rooms-src", r + ".jpg"), photo, os.path.join(ROOT, rel), cfg, w, h)
-                    finish(os.path.join(ROOT, rel))
-                    sizes[size] = rel
-                if sizes:
-                    entry["rooms"].append({"id": r, "label": cfg["label"], "sizes": sizes})
-                continue
-            cfg = ROOMS[r]
-            base = cleared_room(r)
+            cfg = ROOMS.get(r) or PROOMS[r]
             sizes = {}
-            for size in LIMITED.get(pid, ORDER):
-                if "max" in cfg and ORDER.index(size) > ORDER.index(cfg["max"]):
-                    continue
-                w, h = SIZES[size]
-                rel = f"images/rooms/{pid}-{r}-{size}.jpg"
-                mm.mockup(base, photo, os.path.join(ROOT, rel), cfg["ppc"], cfg["cx"], cfg["bottom"], w, h, cfg["crop"], cfg.get("light"))
-                finish(os.path.join(ROOT, rel))
-                sizes[size] = rel
-            entry["rooms"].append({"id": r, "label": cfg["label"], "sizes": sizes})
+            for size in sizes_for(pid, r):
+                sizes[size] = {}
+                for frame in FRAMES:
+                    rel = f"images/rooms/{pid}-{r}-{size}-{frame}.jpg"
+                    render(r, pid, size, frame, rel)
+                    sizes[size][frame] = rel
+            if sizes:
+                entry["rooms"].append({"id": r, "label": cfg["label"], "sizes": sizes})
         data[pid] = entry
         print("done", pid)
+
+    sets = []
+    tmp = os.path.join(ROOT, "rooms-src", ".cache", "pair-tmp.jpg")
+    for st in SETS:
+        w = SIZES[st["size"]][0]
+        shift = (w + st["gap"]) / 2
+        images = {}
+        for frame in FRAMES:
+            rel = f"images/rooms/set-{st['id']}-{frame}.jpg"
+            render(st["room"], st["items"][0], st["size"], frame, tmp, cx_shift=-shift, crop=False)
+            render(st["room"], st["items"][1], st["size"], frame, rel, base=tmp, cx_shift=shift)
+            images[frame] = rel
+        sets.append(dict(id=st["id"], title=st["title"], items=st["items"], size=st["size"],
+                         label=(ROOMS.get(st["room"]) or PROOMS[st["room"]])["label"], images=images))
+        print("set", st["id"])
+
     with open(os.path.join(ROOT, "mockups.js"), "w") as f:
         f.write("/* Generated by tools/build_mockups.py. Do not edit by hand. */\n")
         f.write("const MOCKUPS = " + json.dumps(data, indent=2) + ";\n")
+        f.write("const SETS = " + json.dumps(sets, indent=2) + ";\n")
 
 
 if __name__ == "__main__":

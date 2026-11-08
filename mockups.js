@@ -7,25 +7,46 @@ const MOCKUPS = {
         "id": "dining",
         "label": "Kitchen",
         "sizes": {
-          "40x50": "images/rooms/mallard-drake-dining-40x50.jpg",
-          "50x70": "images/rooms/mallard-drake-dining-50x70.jpg",
-          "70x100": "images/rooms/mallard-drake-dining-70x100.jpg"
+          "40x50": {
+            "white": "images/rooms/mallard-drake-dining-40x50-white.jpg",
+            "wood": "images/rooms/mallard-drake-dining-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/mallard-drake-dining-50x70-white.jpg",
+            "wood": "images/rooms/mallard-drake-dining-50x70-wood.jpg"
+          },
+          "70x100": {
+            "white": "images/rooms/mallard-drake-dining-70x100-white.jpg",
+            "wood": "images/rooms/mallard-drake-dining-70x100-wood.jpg"
+          }
         }
       },
       {
         "id": "cabinet",
         "label": "Living room",
         "sizes": {
-          "40x50": "images/rooms/mallard-drake-cabinet-40x50.jpg",
-          "50x70": "images/rooms/mallard-drake-cabinet-50x70.jpg",
-          "70x100": "images/rooms/mallard-drake-cabinet-70x100.jpg"
+          "40x50": {
+            "white": "images/rooms/mallard-drake-cabinet-40x50-white.jpg",
+            "wood": "images/rooms/mallard-drake-cabinet-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/mallard-drake-cabinet-50x70-white.jpg",
+            "wood": "images/rooms/mallard-drake-cabinet-50x70-wood.jpg"
+          },
+          "70x100": {
+            "white": "images/rooms/mallard-drake-cabinet-70x100-white.jpg",
+            "wood": "images/rooms/mallard-drake-cabinet-70x100-wood.jpg"
+          }
         }
       },
       {
         "id": "dresser",
         "label": "Bedroom",
         "sizes": {
-          "70x100": "images/rooms/mallard-drake-dresser-70x100.jpg"
+          "70x100": {
+            "white": "images/rooms/mallard-drake-dresser-70x100-white.jpg",
+            "wood": "images/rooms/mallard-drake-dresser-70x100-wood.jpg"
+          }
         }
       }
     ]
@@ -37,25 +58,46 @@ const MOCKUPS = {
         "id": "kitchen-shelf",
         "label": "Kitchen",
         "sizes": {
-          "40x50": "images/rooms/mallard-hen-kitchen-shelf-40x50.jpg"
+          "40x50": {
+            "white": "images/rooms/mallard-hen-kitchen-shelf-40x50-white.jpg",
+            "wood": "images/rooms/mallard-hen-kitchen-shelf-40x50-wood.jpg"
+          }
         }
       },
       {
         "id": "sideboard",
         "label": "Living room",
         "sizes": {
-          "40x50": "images/rooms/mallard-hen-sideboard-40x50.jpg",
-          "50x70": "images/rooms/mallard-hen-sideboard-50x70.jpg",
-          "70x100": "images/rooms/mallard-hen-sideboard-70x100.jpg"
+          "40x50": {
+            "white": "images/rooms/mallard-hen-sideboard-40x50-white.jpg",
+            "wood": "images/rooms/mallard-hen-sideboard-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/mallard-hen-sideboard-50x70-white.jpg",
+            "wood": "images/rooms/mallard-hen-sideboard-50x70-wood.jpg"
+          },
+          "70x100": {
+            "white": "images/rooms/mallard-hen-sideboard-70x100-white.jpg",
+            "wood": "images/rooms/mallard-hen-sideboard-70x100-wood.jpg"
+          }
         }
       },
       {
         "id": "gold-sofa",
         "label": "Living room",
         "sizes": {
-          "40x50": "images/rooms/mallard-hen-gold-sofa-40x50.jpg",
-          "50x70": "images/rooms/mallard-hen-gold-sofa-50x70.jpg",
-          "70x100": "images/rooms/mallard-hen-gold-sofa-70x100.jpg"
+          "40x50": {
+            "white": "images/rooms/mallard-hen-gold-sofa-40x50-white.jpg",
+            "wood": "images/rooms/mallard-hen-gold-sofa-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/mallard-hen-gold-sofa-50x70-white.jpg",
+            "wood": "images/rooms/mallard-hen-gold-sofa-50x70-wood.jpg"
+          },
+          "70x100": {
+            "white": "images/rooms/mallard-hen-gold-sofa-70x100-white.jpg",
+            "wood": "images/rooms/mallard-hen-gold-sofa-70x100-wood.jpg"
+          }
         }
       }
     ]
@@ -67,26 +109,50 @@ const MOCKUPS = {
         "id": "teal-living",
         "label": "Living room",
         "sizes": {
-          "40x50": "images/rooms/parakeet-teal-living-40x50.jpg",
-          "50x70": "images/rooms/parakeet-teal-living-50x70.jpg",
-          "70x100": "images/rooms/parakeet-teal-living-70x100.jpg"
+          "40x50": {
+            "white": "images/rooms/parakeet-teal-living-40x50-white.jpg",
+            "wood": "images/rooms/parakeet-teal-living-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/parakeet-teal-living-50x70-white.jpg",
+            "wood": "images/rooms/parakeet-teal-living-50x70-wood.jpg"
+          },
+          "70x100": {
+            "white": "images/rooms/parakeet-teal-living-70x100-white.jpg",
+            "wood": "images/rooms/parakeet-teal-living-70x100-wood.jpg"
+          }
         }
       },
       {
         "id": "console",
         "label": "Office",
         "sizes": {
-          "40x50": "images/rooms/parakeet-console-40x50.jpg",
-          "50x70": "images/rooms/parakeet-console-50x70.jpg",
-          "70x100": "images/rooms/parakeet-console-70x100.jpg"
+          "40x50": {
+            "white": "images/rooms/parakeet-console-40x50-white.jpg",
+            "wood": "images/rooms/parakeet-console-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/parakeet-console-50x70-white.jpg",
+            "wood": "images/rooms/parakeet-console-50x70-wood.jpg"
+          },
+          "70x100": {
+            "white": "images/rooms/parakeet-console-70x100-white.jpg",
+            "wood": "images/rooms/parakeet-console-70x100-wood.jpg"
+          }
         }
       },
       {
         "id": "chair",
         "label": "Living room",
         "sizes": {
-          "40x50": "images/rooms/parakeet-chair-40x50.jpg",
-          "50x70": "images/rooms/parakeet-chair-50x70.jpg"
+          "40x50": {
+            "white": "images/rooms/parakeet-chair-40x50-white.jpg",
+            "wood": "images/rooms/parakeet-chair-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/parakeet-chair-50x70-white.jpg",
+            "wood": "images/rooms/parakeet-chair-50x70-wood.jpg"
+          }
         }
       }
     ]
@@ -98,24 +164,42 @@ const MOCKUPS = {
         "id": "grey-sofa",
         "label": "Living room",
         "sizes": {
-          "40x50": "images/rooms/crested-tit-grey-sofa-40x50.jpg",
-          "50x70": "images/rooms/crested-tit-grey-sofa-50x70.jpg"
+          "40x50": {
+            "white": "images/rooms/crested-tit-grey-sofa-40x50-white.jpg",
+            "wood": "images/rooms/crested-tit-grey-sofa-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/crested-tit-grey-sofa-50x70-white.jpg",
+            "wood": "images/rooms/crested-tit-grey-sofa-50x70-wood.jpg"
+          }
         }
       },
       {
         "id": "cabinet",
         "label": "Living room",
         "sizes": {
-          "40x50": "images/rooms/crested-tit-cabinet-40x50.jpg",
-          "50x70": "images/rooms/crested-tit-cabinet-50x70.jpg"
+          "40x50": {
+            "white": "images/rooms/crested-tit-cabinet-40x50-white.jpg",
+            "wood": "images/rooms/crested-tit-cabinet-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/crested-tit-cabinet-50x70-white.jpg",
+            "wood": "images/rooms/crested-tit-cabinet-50x70-wood.jpg"
+          }
         }
       },
       {
         "id": "loft",
         "label": "Living room",
         "sizes": {
-          "40x50": "images/rooms/crested-tit-loft-40x50.jpg",
-          "50x70": "images/rooms/crested-tit-loft-50x70.jpg"
+          "40x50": {
+            "white": "images/rooms/crested-tit-loft-40x50-white.jpg",
+            "wood": "images/rooms/crested-tit-loft-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/crested-tit-loft-50x70-white.jpg",
+            "wood": "images/rooms/crested-tit-loft-50x70-wood.jpg"
+          }
         }
       }
     ]
@@ -127,25 +211,46 @@ const MOCKUPS = {
         "id": "console",
         "label": "Office",
         "sizes": {
-          "40x50": "images/rooms/orb-spider-console-40x50.jpg",
-          "50x70": "images/rooms/orb-spider-console-50x70.jpg",
-          "70x100": "images/rooms/orb-spider-console-70x100.jpg"
+          "40x50": {
+            "white": "images/rooms/orb-spider-console-40x50-white.jpg",
+            "wood": "images/rooms/orb-spider-console-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/orb-spider-console-50x70-white.jpg",
+            "wood": "images/rooms/orb-spider-console-50x70-wood.jpg"
+          },
+          "70x100": {
+            "white": "images/rooms/orb-spider-console-70x100-white.jpg",
+            "wood": "images/rooms/orb-spider-console-70x100-wood.jpg"
+          }
         }
       },
       {
         "id": "white-living",
         "label": "Living room",
         "sizes": {
-          "40x50": "images/rooms/orb-spider-white-living-40x50.jpg",
-          "50x70": "images/rooms/orb-spider-white-living-50x70.jpg",
-          "70x100": "images/rooms/orb-spider-white-living-70x100.jpg"
+          "40x50": {
+            "white": "images/rooms/orb-spider-white-living-40x50-white.jpg",
+            "wood": "images/rooms/orb-spider-white-living-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/orb-spider-white-living-50x70-white.jpg",
+            "wood": "images/rooms/orb-spider-white-living-50x70-wood.jpg"
+          },
+          "70x100": {
+            "white": "images/rooms/orb-spider-white-living-70x100-white.jpg",
+            "wood": "images/rooms/orb-spider-white-living-70x100-wood.jpg"
+          }
         }
       },
       {
         "id": "dresser",
         "label": "Bedroom",
         "sizes": {
-          "70x100": "images/rooms/orb-spider-dresser-70x100.jpg"
+          "70x100": {
+            "white": "images/rooms/orb-spider-dresser-70x100-white.jpg",
+            "wood": "images/rooms/orb-spider-dresser-70x100-wood.jpg"
+          }
         }
       }
     ]
@@ -157,27 +262,54 @@ const MOCKUPS = {
         "id": "white-living",
         "label": "Living room",
         "sizes": {
-          "40x50": "images/rooms/snipe-white-living-40x50.jpg",
-          "50x70": "images/rooms/snipe-white-living-50x70.jpg",
-          "70x100": "images/rooms/snipe-white-living-70x100.jpg"
+          "40x50": {
+            "white": "images/rooms/snipe-white-living-40x50-white.jpg",
+            "wood": "images/rooms/snipe-white-living-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/snipe-white-living-50x70-white.jpg",
+            "wood": "images/rooms/snipe-white-living-50x70-wood.jpg"
+          },
+          "70x100": {
+            "white": "images/rooms/snipe-white-living-70x100-white.jpg",
+            "wood": "images/rooms/snipe-white-living-70x100-wood.jpg"
+          }
         }
       },
       {
         "id": "sideboard",
         "label": "Living room",
         "sizes": {
-          "40x50": "images/rooms/snipe-sideboard-40x50.jpg",
-          "50x70": "images/rooms/snipe-sideboard-50x70.jpg",
-          "70x100": "images/rooms/snipe-sideboard-70x100.jpg"
+          "40x50": {
+            "white": "images/rooms/snipe-sideboard-40x50-white.jpg",
+            "wood": "images/rooms/snipe-sideboard-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/snipe-sideboard-50x70-white.jpg",
+            "wood": "images/rooms/snipe-sideboard-50x70-wood.jpg"
+          },
+          "70x100": {
+            "white": "images/rooms/snipe-sideboard-70x100-white.jpg",
+            "wood": "images/rooms/snipe-sideboard-70x100-wood.jpg"
+          }
         }
       },
       {
         "id": "gold-sofa",
         "label": "Living room",
         "sizes": {
-          "40x50": "images/rooms/snipe-gold-sofa-40x50.jpg",
-          "50x70": "images/rooms/snipe-gold-sofa-50x70.jpg",
-          "70x100": "images/rooms/snipe-gold-sofa-70x100.jpg"
+          "40x50": {
+            "white": "images/rooms/snipe-gold-sofa-40x50-white.jpg",
+            "wood": "images/rooms/snipe-gold-sofa-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/snipe-gold-sofa-50x70-white.jpg",
+            "wood": "images/rooms/snipe-gold-sofa-50x70-wood.jpg"
+          },
+          "70x100": {
+            "white": "images/rooms/snipe-gold-sofa-70x100-white.jpg",
+            "wood": "images/rooms/snipe-gold-sofa-70x100-wood.jpg"
+          }
         }
       }
     ]
@@ -189,32 +321,56 @@ const MOCKUPS = {
         "id": "bath-concrete",
         "label": "Bathroom",
         "sizes": {
-          "40x50": "images/rooms/mallard-profile-bath-concrete-40x50.jpg",
-          "50x70": "images/rooms/mallard-profile-bath-concrete-50x70.jpg",
-          "70x100": "images/rooms/mallard-profile-bath-concrete-70x100.jpg"
+          "40x50": {
+            "white": "images/rooms/mallard-profile-bath-concrete-40x50-white.jpg",
+            "wood": "images/rooms/mallard-profile-bath-concrete-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/mallard-profile-bath-concrete-50x70-white.jpg",
+            "wood": "images/rooms/mallard-profile-bath-concrete-50x70-wood.jpg"
+          },
+          "70x100": {
+            "white": "images/rooms/mallard-profile-bath-concrete-70x100-white.jpg",
+            "wood": "images/rooms/mallard-profile-bath-concrete-70x100-wood.jpg"
+          }
         }
       },
       {
         "id": "bath-tiles",
         "label": "Bathroom",
         "sizes": {
-          "40x50": "images/rooms/mallard-profile-bath-tiles-40x50.jpg",
-          "50x70": "images/rooms/mallard-profile-bath-tiles-50x70.jpg"
+          "40x50": {
+            "white": "images/rooms/mallard-profile-bath-tiles-40x50-white.jpg",
+            "wood": "images/rooms/mallard-profile-bath-tiles-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/mallard-profile-bath-tiles-50x70-white.jpg",
+            "wood": "images/rooms/mallard-profile-bath-tiles-50x70-wood.jpg"
+          }
         }
       },
       {
         "id": "chair",
         "label": "Living room",
         "sizes": {
-          "40x50": "images/rooms/mallard-profile-chair-40x50.jpg",
-          "50x70": "images/rooms/mallard-profile-chair-50x70.jpg"
+          "40x50": {
+            "white": "images/rooms/mallard-profile-chair-40x50-white.jpg",
+            "wood": "images/rooms/mallard-profile-chair-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/mallard-profile-chair-50x70-white.jpg",
+            "wood": "images/rooms/mallard-profile-chair-50x70-wood.jpg"
+          }
         }
       },
       {
         "id": "bath-beige",
         "label": "Bathroom",
         "sizes": {
-          "40x50": "images/rooms/mallard-profile-bath-beige-40x50.jpg"
+          "40x50": {
+            "white": "images/rooms/mallard-profile-bath-beige-40x50-white.jpg",
+            "wood": "images/rooms/mallard-profile-bath-beige-40x50-wood.jpg"
+          }
         }
       }
     ]
@@ -226,32 +382,56 @@ const MOCKUPS = {
         "id": "bath-tiles",
         "label": "Bathroom",
         "sizes": {
-          "40x50": "images/rooms/mallard-portrait-bath-tiles-40x50.jpg",
-          "50x70": "images/rooms/mallard-portrait-bath-tiles-50x70.jpg"
+          "40x50": {
+            "white": "images/rooms/mallard-portrait-bath-tiles-40x50-white.jpg",
+            "wood": "images/rooms/mallard-portrait-bath-tiles-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/mallard-portrait-bath-tiles-50x70-white.jpg",
+            "wood": "images/rooms/mallard-portrait-bath-tiles-50x70-wood.jpg"
+          }
         }
       },
       {
         "id": "bath-concrete",
         "label": "Bathroom",
         "sizes": {
-          "40x50": "images/rooms/mallard-portrait-bath-concrete-40x50.jpg",
-          "50x70": "images/rooms/mallard-portrait-bath-concrete-50x70.jpg",
-          "70x100": "images/rooms/mallard-portrait-bath-concrete-70x100.jpg"
+          "40x50": {
+            "white": "images/rooms/mallard-portrait-bath-concrete-40x50-white.jpg",
+            "wood": "images/rooms/mallard-portrait-bath-concrete-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/mallard-portrait-bath-concrete-50x70-white.jpg",
+            "wood": "images/rooms/mallard-portrait-bath-concrete-50x70-wood.jpg"
+          },
+          "70x100": {
+            "white": "images/rooms/mallard-portrait-bath-concrete-70x100-white.jpg",
+            "wood": "images/rooms/mallard-portrait-bath-concrete-70x100-wood.jpg"
+          }
         }
       },
       {
         "id": "loft",
         "label": "Living room",
         "sizes": {
-          "40x50": "images/rooms/mallard-portrait-loft-40x50.jpg",
-          "50x70": "images/rooms/mallard-portrait-loft-50x70.jpg"
+          "40x50": {
+            "white": "images/rooms/mallard-portrait-loft-40x50-white.jpg",
+            "wood": "images/rooms/mallard-portrait-loft-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/mallard-portrait-loft-50x70-white.jpg",
+            "wood": "images/rooms/mallard-portrait-loft-50x70-wood.jpg"
+          }
         }
       },
       {
         "id": "bath-beige",
         "label": "Bathroom",
         "sizes": {
-          "40x50": "images/rooms/mallard-portrait-bath-beige-40x50.jpg"
+          "40x50": {
+            "white": "images/rooms/mallard-portrait-bath-beige-40x50-white.jpg",
+            "wood": "images/rooms/mallard-portrait-bath-beige-40x50-wood.jpg"
+          }
         }
       }
     ]
@@ -263,24 +443,42 @@ const MOCKUPS = {
         "id": "sideboard",
         "label": "Living room",
         "sizes": {
-          "40x50": "images/rooms/ibex-mountain-sideboard-40x50.jpg",
-          "50x70": "images/rooms/ibex-mountain-sideboard-50x70.jpg"
+          "40x50": {
+            "white": "images/rooms/ibex-mountain-sideboard-40x50-white.jpg",
+            "wood": "images/rooms/ibex-mountain-sideboard-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/ibex-mountain-sideboard-50x70-white.jpg",
+            "wood": "images/rooms/ibex-mountain-sideboard-50x70-wood.jpg"
+          }
         }
       },
       {
         "id": "teal-living",
         "label": "Living room",
         "sizes": {
-          "40x50": "images/rooms/ibex-mountain-teal-living-40x50.jpg",
-          "50x70": "images/rooms/ibex-mountain-teal-living-50x70.jpg"
+          "40x50": {
+            "white": "images/rooms/ibex-mountain-teal-living-40x50-white.jpg",
+            "wood": "images/rooms/ibex-mountain-teal-living-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/ibex-mountain-teal-living-50x70-white.jpg",
+            "wood": "images/rooms/ibex-mountain-teal-living-50x70-wood.jpg"
+          }
         }
       },
       {
         "id": "gold-sofa",
         "label": "Living room",
         "sizes": {
-          "40x50": "images/rooms/ibex-mountain-gold-sofa-40x50.jpg",
-          "50x70": "images/rooms/ibex-mountain-gold-sofa-50x70.jpg"
+          "40x50": {
+            "white": "images/rooms/ibex-mountain-gold-sofa-40x50-white.jpg",
+            "wood": "images/rooms/ibex-mountain-gold-sofa-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/ibex-mountain-gold-sofa-50x70-white.jpg",
+            "wood": "images/rooms/ibex-mountain-gold-sofa-50x70-wood.jpg"
+          }
         }
       }
     ]
@@ -292,25 +490,46 @@ const MOCKUPS = {
         "id": "white-living",
         "label": "Living room",
         "sizes": {
-          "40x50": "images/rooms/ibex-portrait-white-living-40x50.jpg",
-          "50x70": "images/rooms/ibex-portrait-white-living-50x70.jpg",
-          "70x100": "images/rooms/ibex-portrait-white-living-70x100.jpg"
+          "40x50": {
+            "white": "images/rooms/ibex-portrait-white-living-40x50-white.jpg",
+            "wood": "images/rooms/ibex-portrait-white-living-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/ibex-portrait-white-living-50x70-white.jpg",
+            "wood": "images/rooms/ibex-portrait-white-living-50x70-wood.jpg"
+          },
+          "70x100": {
+            "white": "images/rooms/ibex-portrait-white-living-70x100-white.jpg",
+            "wood": "images/rooms/ibex-portrait-white-living-70x100-wood.jpg"
+          }
         }
       },
       {
         "id": "cabinet",
         "label": "Living room",
         "sizes": {
-          "40x50": "images/rooms/ibex-portrait-cabinet-40x50.jpg",
-          "50x70": "images/rooms/ibex-portrait-cabinet-50x70.jpg",
-          "70x100": "images/rooms/ibex-portrait-cabinet-70x100.jpg"
+          "40x50": {
+            "white": "images/rooms/ibex-portrait-cabinet-40x50-white.jpg",
+            "wood": "images/rooms/ibex-portrait-cabinet-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/ibex-portrait-cabinet-50x70-white.jpg",
+            "wood": "images/rooms/ibex-portrait-cabinet-50x70-wood.jpg"
+          },
+          "70x100": {
+            "white": "images/rooms/ibex-portrait-cabinet-70x100-white.jpg",
+            "wood": "images/rooms/ibex-portrait-cabinet-70x100-wood.jpg"
+          }
         }
       },
       {
         "id": "dresser",
         "label": "Bedroom",
         "sizes": {
-          "70x100": "images/rooms/ibex-portrait-dresser-70x100.jpg"
+          "70x100": {
+            "white": "images/rooms/ibex-portrait-dresser-70x100-white.jpg",
+            "wood": "images/rooms/ibex-portrait-dresser-70x100-wood.jpg"
+          }
         }
       }
     ]
@@ -322,33 +541,60 @@ const MOCKUPS = {
         "id": "cabinet",
         "label": "Living room",
         "sizes": {
-          "40x50": "images/rooms/blue-tit-cabinet-40x50.jpg",
-          "50x70": "images/rooms/blue-tit-cabinet-50x70.jpg",
-          "70x100": "images/rooms/blue-tit-cabinet-70x100.jpg"
+          "40x50": {
+            "white": "images/rooms/blue-tit-cabinet-40x50-white.jpg",
+            "wood": "images/rooms/blue-tit-cabinet-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/blue-tit-cabinet-50x70-white.jpg",
+            "wood": "images/rooms/blue-tit-cabinet-50x70-wood.jpg"
+          },
+          "70x100": {
+            "white": "images/rooms/blue-tit-cabinet-70x100-white.jpg",
+            "wood": "images/rooms/blue-tit-cabinet-70x100-wood.jpg"
+          }
         }
       },
       {
         "id": "grey-sofa",
         "label": "Living room",
         "sizes": {
-          "40x50": "images/rooms/blue-tit-grey-sofa-40x50.jpg",
-          "50x70": "images/rooms/blue-tit-grey-sofa-50x70.jpg",
-          "70x100": "images/rooms/blue-tit-grey-sofa-70x100.jpg"
+          "40x50": {
+            "white": "images/rooms/blue-tit-grey-sofa-40x50-white.jpg",
+            "wood": "images/rooms/blue-tit-grey-sofa-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/blue-tit-grey-sofa-50x70-white.jpg",
+            "wood": "images/rooms/blue-tit-grey-sofa-50x70-wood.jpg"
+          },
+          "70x100": {
+            "white": "images/rooms/blue-tit-grey-sofa-70x100-white.jpg",
+            "wood": "images/rooms/blue-tit-grey-sofa-70x100-wood.jpg"
+          }
         }
       },
       {
         "id": "loft",
         "label": "Living room",
         "sizes": {
-          "40x50": "images/rooms/blue-tit-loft-40x50.jpg",
-          "50x70": "images/rooms/blue-tit-loft-50x70.jpg"
+          "40x50": {
+            "white": "images/rooms/blue-tit-loft-40x50-white.jpg",
+            "wood": "images/rooms/blue-tit-loft-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/blue-tit-loft-50x70-white.jpg",
+            "wood": "images/rooms/blue-tit-loft-50x70-wood.jpg"
+          }
         }
       },
       {
         "id": "nursery",
         "label": "Bedroom",
         "sizes": {
-          "70x100": "images/rooms/blue-tit-nursery-70x100.jpg"
+          "70x100": {
+            "white": "images/rooms/blue-tit-nursery-70x100-white.jpg",
+            "wood": "images/rooms/blue-tit-nursery-70x100-wood.jpg"
+          }
         }
       }
     ]
@@ -360,26 +606,50 @@ const MOCKUPS = {
         "id": "teal-living",
         "label": "Living room",
         "sizes": {
-          "40x50": "images/rooms/monk-parakeet-teal-living-40x50.jpg",
-          "50x70": "images/rooms/monk-parakeet-teal-living-50x70.jpg",
-          "70x100": "images/rooms/monk-parakeet-teal-living-70x100.jpg"
+          "40x50": {
+            "white": "images/rooms/monk-parakeet-teal-living-40x50-white.jpg",
+            "wood": "images/rooms/monk-parakeet-teal-living-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/monk-parakeet-teal-living-50x70-white.jpg",
+            "wood": "images/rooms/monk-parakeet-teal-living-50x70-wood.jpg"
+          },
+          "70x100": {
+            "white": "images/rooms/monk-parakeet-teal-living-70x100-white.jpg",
+            "wood": "images/rooms/monk-parakeet-teal-living-70x100-wood.jpg"
+          }
         }
       },
       {
         "id": "dining",
         "label": "Kitchen",
         "sizes": {
-          "40x50": "images/rooms/monk-parakeet-dining-40x50.jpg",
-          "50x70": "images/rooms/monk-parakeet-dining-50x70.jpg",
-          "70x100": "images/rooms/monk-parakeet-dining-70x100.jpg"
+          "40x50": {
+            "white": "images/rooms/monk-parakeet-dining-40x50-white.jpg",
+            "wood": "images/rooms/monk-parakeet-dining-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/monk-parakeet-dining-50x70-white.jpg",
+            "wood": "images/rooms/monk-parakeet-dining-50x70-wood.jpg"
+          },
+          "70x100": {
+            "white": "images/rooms/monk-parakeet-dining-70x100-white.jpg",
+            "wood": "images/rooms/monk-parakeet-dining-70x100-wood.jpg"
+          }
         }
       },
       {
         "id": "chair",
         "label": "Living room",
         "sizes": {
-          "40x50": "images/rooms/monk-parakeet-chair-40x50.jpg",
-          "50x70": "images/rooms/monk-parakeet-chair-50x70.jpg"
+          "40x50": {
+            "white": "images/rooms/monk-parakeet-chair-40x50-white.jpg",
+            "wood": "images/rooms/monk-parakeet-chair-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/monk-parakeet-chair-50x70-white.jpg",
+            "wood": "images/rooms/monk-parakeet-chair-50x70-wood.jpg"
+          }
         }
       }
     ]
@@ -391,32 +661,56 @@ const MOCKUPS = {
         "id": "kitchen-shelf",
         "label": "Kitchen",
         "sizes": {
-          "40x50": "images/rooms/serins-kitchen-shelf-40x50.jpg"
+          "40x50": {
+            "white": "images/rooms/serins-kitchen-shelf-40x50-white.jpg",
+            "wood": "images/rooms/serins-kitchen-shelf-40x50-wood.jpg"
+          }
         }
       },
       {
         "id": "console",
         "label": "Office",
         "sizes": {
-          "40x50": "images/rooms/serins-console-40x50.jpg",
-          "50x70": "images/rooms/serins-console-50x70.jpg",
-          "70x100": "images/rooms/serins-console-70x100.jpg"
+          "40x50": {
+            "white": "images/rooms/serins-console-40x50-white.jpg",
+            "wood": "images/rooms/serins-console-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/serins-console-50x70-white.jpg",
+            "wood": "images/rooms/serins-console-50x70-wood.jpg"
+          },
+          "70x100": {
+            "white": "images/rooms/serins-console-70x100-white.jpg",
+            "wood": "images/rooms/serins-console-70x100-wood.jpg"
+          }
         }
       },
       {
         "id": "gold-sofa",
         "label": "Living room",
         "sizes": {
-          "40x50": "images/rooms/serins-gold-sofa-40x50.jpg",
-          "50x70": "images/rooms/serins-gold-sofa-50x70.jpg",
-          "70x100": "images/rooms/serins-gold-sofa-70x100.jpg"
+          "40x50": {
+            "white": "images/rooms/serins-gold-sofa-40x50-white.jpg",
+            "wood": "images/rooms/serins-gold-sofa-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/serins-gold-sofa-50x70-white.jpg",
+            "wood": "images/rooms/serins-gold-sofa-50x70-wood.jpg"
+          },
+          "70x100": {
+            "white": "images/rooms/serins-gold-sofa-70x100-white.jpg",
+            "wood": "images/rooms/serins-gold-sofa-70x100-wood.jpg"
+          }
         }
       },
       {
         "id": "nursery",
         "label": "Bedroom",
         "sizes": {
-          "70x100": "images/rooms/serins-nursery-70x100.jpg"
+          "70x100": {
+            "white": "images/rooms/serins-nursery-70x100-white.jpg",
+            "wood": "images/rooms/serins-nursery-70x100-wood.jpg"
+          }
         }
       }
     ]
@@ -428,33 +722,60 @@ const MOCKUPS = {
         "id": "dining",
         "label": "Kitchen",
         "sizes": {
-          "40x50": "images/rooms/robin-dining-40x50.jpg",
-          "50x70": "images/rooms/robin-dining-50x70.jpg",
-          "70x100": "images/rooms/robin-dining-70x100.jpg"
+          "40x50": {
+            "white": "images/rooms/robin-dining-40x50-white.jpg",
+            "wood": "images/rooms/robin-dining-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/robin-dining-50x70-white.jpg",
+            "wood": "images/rooms/robin-dining-50x70-wood.jpg"
+          },
+          "70x100": {
+            "white": "images/rooms/robin-dining-70x100-white.jpg",
+            "wood": "images/rooms/robin-dining-70x100-wood.jpg"
+          }
         }
       },
       {
         "id": "sideboard",
         "label": "Living room",
         "sizes": {
-          "40x50": "images/rooms/robin-sideboard-40x50.jpg",
-          "50x70": "images/rooms/robin-sideboard-50x70.jpg",
-          "70x100": "images/rooms/robin-sideboard-70x100.jpg"
+          "40x50": {
+            "white": "images/rooms/robin-sideboard-40x50-white.jpg",
+            "wood": "images/rooms/robin-sideboard-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/robin-sideboard-50x70-white.jpg",
+            "wood": "images/rooms/robin-sideboard-50x70-wood.jpg"
+          },
+          "70x100": {
+            "white": "images/rooms/robin-sideboard-70x100-white.jpg",
+            "wood": "images/rooms/robin-sideboard-70x100-wood.jpg"
+          }
         }
       },
       {
         "id": "loft",
         "label": "Living room",
         "sizes": {
-          "40x50": "images/rooms/robin-loft-40x50.jpg",
-          "50x70": "images/rooms/robin-loft-50x70.jpg"
+          "40x50": {
+            "white": "images/rooms/robin-loft-40x50-white.jpg",
+            "wood": "images/rooms/robin-loft-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/robin-loft-50x70-white.jpg",
+            "wood": "images/rooms/robin-loft-50x70-wood.jpg"
+          }
         }
       },
       {
         "id": "nursery",
         "label": "Bedroom",
         "sizes": {
-          "70x100": "images/rooms/robin-nursery-70x100.jpg"
+          "70x100": {
+            "white": "images/rooms/robin-nursery-70x100-white.jpg",
+            "wood": "images/rooms/robin-nursery-70x100-wood.jpg"
+          }
         }
       }
     ]
@@ -466,26 +787,130 @@ const MOCKUPS = {
         "id": "white-living",
         "label": "Living room",
         "sizes": {
-          "40x50": "images/rooms/hoopoe-white-living-40x50.jpg",
-          "50x70": "images/rooms/hoopoe-white-living-50x70.jpg"
+          "40x50": {
+            "white": "images/rooms/hoopoe-white-living-40x50-white.jpg",
+            "wood": "images/rooms/hoopoe-white-living-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/hoopoe-white-living-50x70-white.jpg",
+            "wood": "images/rooms/hoopoe-white-living-50x70-wood.jpg"
+          }
         }
       },
       {
         "id": "sideboard",
         "label": "Living room",
         "sizes": {
-          "40x50": "images/rooms/hoopoe-sideboard-40x50.jpg",
-          "50x70": "images/rooms/hoopoe-sideboard-50x70.jpg"
+          "40x50": {
+            "white": "images/rooms/hoopoe-sideboard-40x50-white.jpg",
+            "wood": "images/rooms/hoopoe-sideboard-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/hoopoe-sideboard-50x70-white.jpg",
+            "wood": "images/rooms/hoopoe-sideboard-50x70-wood.jpg"
+          }
         }
       },
       {
         "id": "chair",
         "label": "Living room",
         "sizes": {
-          "40x50": "images/rooms/hoopoe-chair-40x50.jpg",
-          "50x70": "images/rooms/hoopoe-chair-50x70.jpg"
+          "40x50": {
+            "white": "images/rooms/hoopoe-chair-40x50-white.jpg",
+            "wood": "images/rooms/hoopoe-chair-40x50-wood.jpg"
+          },
+          "50x70": {
+            "white": "images/rooms/hoopoe-chair-50x70-white.jpg",
+            "wood": "images/rooms/hoopoe-chair-50x70-wood.jpg"
+          }
         }
       }
     ]
   }
 };
+const SETS = [
+  {
+    "id": "parakeets",
+    "title": "The Parakeets",
+    "items": [
+      "parakeet",
+      "monk-parakeet"
+    ],
+    "size": "50x70",
+    "label": "Living room",
+    "images": {
+      "white": "images/rooms/set-parakeets-white.jpg",
+      "wood": "images/rooms/set-parakeets-wood.jpg"
+    }
+  },
+  {
+    "id": "pond",
+    "title": "Life on the Pond",
+    "items": [
+      "mallard-drake",
+      "mallard-hen"
+    ],
+    "size": "50x70",
+    "label": "Living room",
+    "images": {
+      "white": "images/rooms/set-pond-white.jpg",
+      "wood": "images/rooms/set-pond-wood.jpg"
+    }
+  },
+  {
+    "id": "emerald",
+    "title": "Emerald Mallards",
+    "items": [
+      "mallard-profile",
+      "mallard-portrait"
+    ],
+    "size": "40x50",
+    "label": "Living room",
+    "images": {
+      "white": "images/rooms/set-emerald-white.jpg",
+      "wood": "images/rooms/set-emerald-wood.jpg"
+    }
+  },
+  {
+    "id": "ibex",
+    "title": "Alpine Ibex",
+    "items": [
+      "ibex-mountain",
+      "ibex-portrait"
+    ],
+    "size": "50x70",
+    "label": "Living room",
+    "images": {
+      "white": "images/rooms/set-ibex-white.jpg",
+      "wood": "images/rooms/set-ibex-wood.jpg"
+    }
+  },
+  {
+    "id": "songbirds",
+    "title": "Garden Songbirds",
+    "items": [
+      "blue-tit",
+      "robin"
+    ],
+    "size": "40x50",
+    "label": "Living room",
+    "images": {
+      "white": "images/rooms/set-songbirds-white.jpg",
+      "wood": "images/rooms/set-songbirds-wood.jpg"
+    }
+  },
+  {
+    "id": "pines",
+    "title": "Birds of the Pines",
+    "items": [
+      "crested-tit",
+      "serins"
+    ],
+    "size": "40x50",
+    "label": "Living room",
+    "images": {
+      "white": "images/rooms/set-pines-white.jpg",
+      "wood": "images/rooms/set-pines-wood.jpg"
+    }
+  }
+];

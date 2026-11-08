@@ -5,7 +5,7 @@
 const SHOP = {
   name: "NaturePrints",           // shop name (shown in the logo)
   tagline: "Nature, closer than you think",
-  photographer: "Paolo Laitinen",
+  photographer: "Paolo",
   email: "hello@example.com",
   instagram: "https://instagram.com/",
   city: "Barcelona",

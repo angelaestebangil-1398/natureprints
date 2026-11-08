@@ -124,24 +124,6 @@ const MOCKUPS = {
         }
       },
       {
-        "id": "console",
-        "label": "Office",
-        "sizes": {
-          "40x50": {
-            "white": "images/rooms/parakeet-console-40x50-white.jpg",
-            "wood": "images/rooms/parakeet-console-40x50-wood.jpg"
-          },
-          "50x70": {
-            "white": "images/rooms/parakeet-console-50x70-white.jpg",
-            "wood": "images/rooms/parakeet-console-50x70-wood.jpg"
-          },
-          "70x100": {
-            "white": "images/rooms/parakeet-console-70x100-white.jpg",
-            "wood": "images/rooms/parakeet-console-70x100-wood.jpg"
-          }
-        }
-      },
-      {
         "id": "chair",
         "label": "Living room",
         "sizes": {
@@ -658,24 +640,6 @@ const MOCKUPS = {
           "40x50": {
             "white": "images/rooms/serins-kitchen-shelf-40x50-white.jpg",
             "wood": "images/rooms/serins-kitchen-shelf-40x50-wood.jpg"
-          }
-        }
-      },
-      {
-        "id": "console",
-        "label": "Office",
-        "sizes": {
-          "40x50": {
-            "white": "images/rooms/serins-console-40x50-white.jpg",
-            "wood": "images/rooms/serins-console-40x50-wood.jpg"
-          },
-          "50x70": {
-            "white": "images/rooms/serins-console-50x70-white.jpg",
-            "wood": "images/rooms/serins-console-50x70-wood.jpg"
-          },
-          "70x100": {
-            "white": "images/rooms/serins-console-70x100-white.jpg",
-            "wood": "images/rooms/serins-console-70x100-wood.jpg"
           }
         }
       },

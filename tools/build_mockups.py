@@ -97,7 +97,7 @@ PROOMS["loft"]["cx"] = round((0 + sum(p[0] for p in _right_edge_cm) / 2) / 2, 1)
 PLAN = {
     "mallard-drake":    ["dining", "cabinet", "dresser"],
     "mallard-hen":      ["kitchen-shelf", "sideboard", "gold-sofa"],
-    "parakeet":         ["teal-living", "console", "chair"],
+    "parakeet":         ["teal-living", "chair"],
     "crested-tit":      ["grey-sofa", "cabinet", "loft"],
     "orb-spider":       ["gold-sofa", "white-living", "dresser"],
     "snipe":            ["white-living", "sideboard", "gold-sofa"],
@@ -107,7 +107,7 @@ PLAN = {
     "ibex-portrait":    ["white-living", "cabinet", "dresser"],
     "blue-tit":         ["cabinet", "grey-sofa", "loft", "nursery"],
     "monk-parakeet":    ["teal-living", "dining", "chair"],
-    "serins":           ["kitchen-shelf", "console", "gold-sofa", "nursery"],
+    "serins":           ["kitchen-shelf", "gold-sofa", "nursery"],
     "robin":            ["dining", "sideboard", "loft", "nursery"],
     "hoopoe":           ["white-living", "sideboard", "chair"],
 }

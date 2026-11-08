@@ -147,7 +147,7 @@ function setCardHTML(st, frame = "white") {
   const [a, b] = st.items.map((id) => PRODUCTS.find((x) => x.id === id));
   return `
     <div class="set-card">
-      <div class="set-img"><img src="${st.images[frame] || st.images.white}" alt="${st.title}: ${a.title} and ${b.title}" loading="lazy"></div>
+      <button class="set-img" data-open-set="${st.id}" aria-label="View ${st.title} larger"><img src="${st.images[frame] || st.images.white}" alt="${st.title}: ${a.title} and ${b.title}" loading="lazy"><span class="zoom">View larger</span></button>
       <div class="set-body">
         <h3>${st.title}</h3>
         <p class="muted">Set of 2 · <a href="product.html?id=${a.id}">${a.title}</a> + <a href="product.html?id=${b.id}">${b.title}</a></p>
@@ -167,15 +167,52 @@ function addSetToCart(setId, finishId = FINISHES[0].id) {
   saveCart(cart);
   openCart();
 }
+function openSet(setId, frame = FRAME) {
+  const st = allSets().find((x) => x.id === setId);
+  if (!st) return;
+  const [a, b] = st.items.map((id) => PRODUCTS.find((x) => x.id === id));
+  let box = $("[data-setbox]");
+  if (!box) {
+    document.body.insertAdjacentHTML("beforeend", `<div class="setbox" data-setbox hidden></div>`);
+    box = $("[data-setbox]");
+  }
+  box.innerHTML = `
+    <div class="setbox-inner" role="dialog" aria-label="${st.title}">
+      <button class="icon-btn setbox-close" data-close-set aria-label="Close">${ICON.close}</button>
+      <img src="${st.images[frame] || st.images.white}" alt="${st.title}">
+      <div class="setbox-info">
+        <div><h3>${st.title}</h3>
+          <p class="muted">Set of 2 · ${sizeLabel(a, sizeById(st.size))} each · <b>${money(setPrice(st))}</b></p>
+          <p class="setbox-links"><a href="product.html?id=${a.id}">${a.title} →</a> <a href="product.html?id=${b.id}">${b.title} →</a></p></div>
+        <div class="setbox-actions">
+          <div class="frame-pick">Frame: ${["wood", "white"].map((f) => `<button class="${f === frame ? "active" : ""}" data-set-frame="${f}" data-set="${st.id}">${f === "white" ? "White" : "Brown"}</button>`).join("")}</div>
+          <button class="btn" data-add-set="${st.id}">Add set to cart</button>
+        </div>
+      </div>
+    </div>`;
+  box.hidden = false;
+  document.body.style.overflow = "hidden";
+}
+function closeSet() {
+  const box = $("[data-setbox]");
+  if (box) box.hidden = true;
+  document.body.style.overflow = "";
+}
 document.addEventListener("click", (e) => {
   const b = e.target.closest("[data-add-set]");
-  if (b) addSetToCart(b.dataset.addSet, b.dataset.finish);
+  if (b) { closeSet(); addSetToCart(b.dataset.addSet, b.dataset.finish); return; }
+  const o = e.target.closest("[data-open-set]");
+  if (o) { openSet(o.dataset.openSet); return; }
+  const f = e.target.closest("[data-set-frame]");
+  if (f) { setFrame(f.dataset.setFrame); openSet(f.dataset.set, f.dataset.setFrame); return; }
+  if (e.target.closest("[data-close-set]") || e.target.matches("[data-setbox]")) closeSet();
 });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeSet(); });
 const photoView = (src, alt) => `<div class="view-photo"><img src="${src}" alt="${alt}"></div>`;
 
 /* ---------- Product card ---------- */
 function cardHTML(p) {
-  const midSize = sizesFor(p)[Math.min(1, sizesFor(p).length - 1)].id;
+  const midSize = sizesFor(p)[sizesFor(p).length - 1].id; // show rooms at the biggest size
   const m = mockFor(p);
   if (m) {
     return `
@@ -384,7 +421,12 @@ function renderHome() {
 
 
   const hs = $("[data-home-sets]");
-  if (hs) hs.innerHTML = allSets().map((st) => setCardHTML(st, "wood")).join("");
+  if (hs) hs.innerHTML = allSets().map((st) => setCardHTML(st, FRAME)).join("");
+  const fs = $("[data-favs]");
+  if (fs && typeof FEATURED !== "undefined") {
+    $("[data-favs-title]").textContent = FEATURED.title;
+    fs.innerHTML = FEATURED.ids.map((id) => PRODUCTS.find((x) => x.id === id)).filter(Boolean).map(cardHTML).join("");
+  }
   $("[data-featured]").innerHTML = PRODUCTS.map(cardHTML).join("");
 }
 
@@ -417,7 +459,7 @@ function renderProduct() {
   const p = PRODUCTS.find((x) => x.id === id) || PRODUCTS[0];
   document.title = `${p.title} · ${SHOP.name}`;
   const sizes = sizesFor(p);
-  const state = { size: sizes[Math.min(1, sizes.length - 1)].id, finish: FINISHES[0].id, qty: 1, view: 0 };
+  const state = { size: sizes[sizes.length - 1].id, finish: FINISHES[0].id, qty: 1, view: 0 };
   const mySets = allSets().filter((st) => st.items.includes(p.id));
 
   $("[data-crumb]").innerHTML = `<a href="index.html">Home</a> / <a href="shop.html?cat=${p.category}">${catName(p.category)}</a> / ${p.title}`;

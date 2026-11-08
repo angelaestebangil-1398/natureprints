@@ -21,6 +21,9 @@ const CATEGORIES = [
   { id: "plants",  name: "Plants & Flowers" },
 ];
 
+/* Featured on the home page (in this order). Change the ids to change the selection. */
+const FEATURED = { title: "Paolo's favourites", ids: ["ibex-portrait", "mallard-profile", "parakeet", "hoopoe"] };
+
 /* Collection */
 const COLLECTION = { number: "Collection 01", name: "Wildly Yours", headline: "Find the wild for your wall" };
 

@@ -349,7 +349,7 @@ h3 { font-size: 20px; }
 .frame-pick button.active { border-color: var(--ink); background: var(--ink); color: var(--white); }
 .sets { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; }
 .set-card { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
-.set-img { aspect-ratio: 4/3; overflow: hidden; background: var(--sand); }
+.set-img { aspect-ratio: 4/3; overflow: hidden; background: var(--sand); border: 0; padding: 0; cursor: zoom-in; position: relative; display: block; width: 100%; }
 .set-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
 .set-card:hover .set-img img { transform: scale(1.03); }
 .set-body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
@@ -391,3 +391,20 @@ h3 { font-size: 20px; }
 .about-photo.empty span { display: block; color: var(--muted); font-size: 15px; }
 .chapter-plain { margin-top: 48px; }
 .chapter-plain h2 { margin: 0 0 14px; }
+
+.set-img .zoom { position: absolute; right: 12px; bottom: 12px; background: rgba(251,250,246,.92); color: var(--ink); font-size: 13px; padding: 5px 12px; border-radius: 20px; opacity: 0; transition: opacity .3s; }
+.set-card:hover .set-img .zoom, .set-img:focus-visible .zoom { opacity: 1; }
+.grid.favs { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 1000px) { .grid.favs { grid-template-columns: repeat(2, 1fr); } }
+.setbox { position: fixed; inset: 0; z-index: 80; background: rgba(30,25,18,.72); display: grid; place-items: center; padding: 24px; }
+.setbox[hidden] { display: none; }
+.setbox-inner { background: var(--bg); border-radius: var(--radius); max-width: 1100px; width: 100%; max-height: 100%; overflow: auto; position: relative; }
+.setbox-inner > img { width: 100%; display: block; max-height: calc(100vh - 210px); object-fit: cover; }
+.setbox-close { position: absolute; top: 10px; right: 10px; background: rgba(251,250,246,.92); border-radius: 50%; }
+.setbox-info { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; padding: 18px 22px 22px; }
+.setbox-info h3 { font-size: 26px; }
+.setbox-info p { margin: 6px 0 0; font-size: 14px; }
+.setbox-links a { color: var(--bark); margin-right: 14px; }
+.setbox-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.setbox-actions .frame-pick { margin: 0; }
+@media (max-width: 520px) { .setbox { padding: 10px; } }

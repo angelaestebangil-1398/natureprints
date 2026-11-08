@@ -2,13 +2,21 @@
 usage: python3 make_mockup.py room.jpg photo.jpg out.jpg px_per_cm center_x bottom_y print_w_cm print_h_cm [crop_x crop_y crop_w crop_h]
 """
 import sys
-from PIL import Image, ImageFilter, ImageStat
+from PIL import Image, ImageDraw, ImageFilter, ImageStat
 
-def mockup(room_p, photo_p, out_p, ppc, cx, bottom, wcm, hcm, crop=None, light=None):
+# Look of the print on the wall
+FRAME_COLOR = (243, 241, 237)   # white frame
+FRAME_EDGE = (205, 200, 192)    # thin darker edge so a white frame shows on white walls
+BORDER = 0.06                   # white paper border around the photo (0 = photo to the edge)
+
+def mockup(room_p, photo_p, out_p, ppc, cx, bottom, wcm, hcm, crop=None, light=None,
+           frame_color=None, border_ratio=None):
+    frame_color = frame_color or FRAME_COLOR
+    border_ratio = BORDER if border_ratio is None else border_ratio
     room = Image.open(room_p).convert("RGB")
     W, H = round(wcm * ppc), round(hcm * ppc)
     frame = max(2, round(1.8 * ppc))      # 1.8 cm thin frame
-    border = round(min(W, H) * 0.06)      # white paper border
+    border = round(min(W, H) * border_ratio)  # white paper border
     x0, y0 = round(cx - W / 2), round(bottom - H)
 
     # light level of the wall where the print hangs -> darken print to match
@@ -23,8 +31,12 @@ def mockup(room_p, photo_p, out_p, ppc, cx, bottom, wcm, hcm, crop=None, light=N
     inner = inner.resize((round(inner.width * r), round(inner.height * r)), Image.LANCZOS)
     inner = inner.crop(((inner.width - iw) // 2, (inner.height - ih) // 2, (inner.width - iw) // 2 + iw, (inner.height - ih) // 2 + ih))
     paper.paste(inner, (border, border))
-    art = Image.new("RGB", (W, H), (38, 33, 28))
+    art = Image.new("RGB", (W, H), frame_color)
     art.paste(paper, (frame, frame))
+    if sum(frame_color) > 450:  # light frame: outline it so it reads against the wall
+        d = ImageDraw.Draw(art)
+        d.rectangle((0, 0, W - 1, H - 1), outline=FRAME_EDGE)
+        d.rectangle((frame - 1, frame - 1, W - frame, H - frame), outline=FRAME_EDGE)
     art = art.point(lambda v: int(v * light))
 
     # soft shadow below/right

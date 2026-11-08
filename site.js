@@ -6,7 +6,6 @@
 /* ---------- Helpers ---------- */
 const $ = (sel, root = document) => root.querySelector(sel);
 const money = (n) => SHOP.currency + (Number.isInteger(n) ? n : n.toFixed(2));
-const placeOf = (p) => PLACES.find((x) => x.id === p.place) || { name: "", country: "" };
 const catName = (id) => (CATEGORIES.find((c) => c.id === id) || {}).name || "";
 const sizesFor = (p) => SIZES.filter((s) => !p.sizes || p.sizes.includes(s.id));
 const finishById = (id) => FINISHES.find((f) => f.id === id) || FINISHES[0];
@@ -149,7 +148,7 @@ function cardHTML(p) {
         <img class="hover" src="${roomShot(m.rooms[0], midSize).src}" alt="" loading="lazy">
       </div>
       <div class="info">
-        <div><h3>${p.title}</h3><div class="cat-name">${catName(p.category)} · ${placeOf(p).name}</div></div>
+        <div><h3>${p.title}</h3><div class="cat-name">${catName(p.category)}</div></div>
         <div class="from">from ${money(fromPrice(p))}</div>
       </div>
     </a>`;
@@ -161,7 +160,7 @@ function cardHTML(p) {
         ${roomHTML(p, midSize, p.room || "living")}
       </div>
       <div class="info">
-        <div><h3>${p.title}</h3><div class="cat-name">${catName(p.category)} · ${placeOf(p).name}</div></div>
+        <div><h3>${p.title}</h3><div class="cat-name">${catName(p.category)}</div></div>
         <div class="from">from ${money(fromPrice(p))}</div>
       </div>
     </a>`;
@@ -172,10 +171,9 @@ function renderLayout() {
   const page = document.body.dataset.page;
   const cat = new URLSearchParams(location.search).get("cat");
   const navLinks = [
-    { href: "shop.html", label: "Shop all", active: page === "shop" && !cat && !new URLSearchParams(location.search).get("place") },
+    { href: "shop.html", label: "Shop all", active: page === "shop" && !cat },
     ...CATEGORIES.map((c) => ({ href: `shop.html?cat=${c.id}`, label: c.name, active: cat === c.id })),
-    { href: "index.html#places", label: "Places", active: false },
-    { href: "story.html", label: "Our story", active: page === "story" },
+    { href: "about.html", label: "About me", active: page === "about" },
   ];
 
   document.body.insertAdjacentHTML("afterbegin", `
@@ -209,12 +207,8 @@ function renderLayout() {
             ${CATEGORIES.map((c) => `<a href="shop.html?cat=${c.id}">${c.name}</a>`).join("")}
           </div>
           <div>
-            <h4>Places</h4>
-            ${PLACES.filter((pl) => !pl.soon).map((pl) => `<a href="shop.html?place=${pl.id}">${pl.name}</a>`).join("")}
-          </div>
-          <div>
             <h4>Help</h4>
-            <a href="story.html">Our story</a>
+            <a href="about.html">About me</a>
             <a href="policies.html">Shipping &amp; returns</a>
             <a href="policies.html#privacy">Privacy</a>
             <a href="mailto:${SHOP.email}">Contact</a>
@@ -362,18 +356,6 @@ function renderHome() {
       : `<a class="cat empty" href="shop.html?cat=${c.id}"><div class="pattern"></div><div class="label"><h3>${c.name}</h3><span>Coming soon</span></div></a>`;
   }).join("");
 
-  $("[data-places]").innerHTML = PLACES.map((pl) => {
-    const items = PRODUCTS.filter((p) => p.place === pl.id);
-    const cover = items[0];
-    if (pl.soon) return `<div class="place soon">
-      <div class="place-img"><span>Coming soon</span></div>
-      <div class="place-body"><span class="eyebrow">Next journey</span><h3>${pl.name}</h3><p>${pl.blurb}</p></div>
-    </div>`;
-    return `<a class="place" href="shop.html?place=${pl.id}">
-      <div class="place-img">${cover ? `<img src="${cover.thumb}" alt="" loading="lazy">` : ""}</div>
-      <div class="place-body"><span class="eyebrow">${pl.country}</span><h3>${pl.name}</h3><p>${pl.blurb}</p><span class="link">${items.length} print${items.length === 1 ? "" : "s"} →</span></div>
-    </a>`;
-  }).join("");
 
   $("[data-featured]").innerHTML = PRODUCTS.slice(0, 6).map(cardHTML).join("");
 }
@@ -381,20 +363,16 @@ function renderHome() {
 function renderShop() {
   const params = new URLSearchParams(location.search);
   const cat = params.get("cat");
-  const place = PLACES.find((x) => x.id === params.get("place"));
   const current = CATEGORIES.find((c) => c.id === cat);
-  const items = PRODUCTS.filter((p) => (!current || p.category === cat) && (!place || p.place === place.id));
-  const title = place ? `Wild ${place.name}` : current ? current.name : "All prints";
+  const items = PRODUCTS.filter((p) => !current || p.category === cat);
+  const title = current ? current.name : "All prints";
   document.title = `${title} · ${SHOP.name}`;
   $("[data-shop-title]").textContent = title;
-  if (place) $("[data-shop-intro]").textContent = place.blurb;
 
   const tab = (href, label, n, active) => `<a class="tab ${active ? "active" : ""}" href="${href}">${label}<span class="n">${n}</span></a>`;
   $("[data-tabs]").innerHTML =
-    tab("shop.html", "All", PRODUCTS.length, !current && !place) +
-    CATEGORIES.map((c) => tab(`shop.html?cat=${c.id}`, c.name, PRODUCTS.filter((p) => p.category === c.id).length, cat === c.id)).join("") +
-    `<span class="tab-sep"></span>` +
-    PLACES.filter((pl) => !pl.soon).map((pl) => tab(`shop.html?place=${pl.id}`, pl.name, PRODUCTS.filter((p) => p.place === pl.id).length, place && place.id === pl.id)).join("");
+    tab("shop.html", "All", PRODUCTS.length, !current) +
+    CATEGORIES.map((c) => tab(`shop.html?cat=${c.id}`, c.name, PRODUCTS.filter((p) => p.category === c.id).length, cat === c.id)).join("");
 
   $("[data-results]").textContent = items.length ? `${items.length} print${items.length > 1 ? "s" : ""}` : "";
   $("[data-grid]").innerHTML = items.length
@@ -460,7 +438,7 @@ function renderProduct() {
   $("[data-cat]").textContent = catName(p.category);
   $("[data-cat]").href = `shop.html?cat=${p.category}`;
   $("[data-desc]").textContent = p.description;
-  $("[data-place]").innerHTML = `Photographed in <a href="shop.html?place=${p.place}">${placeOf(p).name}, ${placeOf(p).country}</a> · ${COLLECTION.number}: ${COLLECTION.name}`;
+  $("[data-place]").textContent = `${COLLECTION.number}: ${COLLECTION.name}`;
 
   document.addEventListener("click", (e) => {
     const t = e.target.closest("[data-view],[data-size],[data-finish],[data-qty-d],[data-add]");

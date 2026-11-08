@@ -21,19 +21,8 @@ const CATEGORIES = [
   { id: "plants",  name: "Plants & Flowers" },
 ];
 
-/* Collections and the places where the photos were taken */
+/* Collection */
 const COLLECTION = { number: "Collection 01", name: "Wildly Yours", headline: "Find the wild for your wall" };
-
-const PLACES = [
-  { id: "barcelona", name: "Barcelona", country: "Spain",
-    blurb: "Parakeets in the plane trees, ducks in the park ponds, spiders on the balcony plants." },
-  { id: "paris", name: "Paris", country: "France",
-    blurb: "Between the canals, gardens and cemeteries, a whole world of birds lives in the city." },
-  { id: "chamonix", name: "Chamonix", country: "France",
-    blurb: "At the foot of Mont Blanc, the forest starts where the streets end." },
-  { id: "latam", name: "Latin America", country: "Coming soon", soon: true,
-    blurb: "Photographed on our journey through Latin America. A new collection is on its way." },
-];
 
 /* Paper finishes. "extra" is added to the price (0 = same price). */
 const FINISHES = [
@@ -52,7 +41,7 @@ const SIZES = [
 /* The prints. Copy a block to add a new one.
    - no: our internal photo number (not shown on the website). Never reuse a number.
    - category: one of the CATEGORIES ids above
-   - place: one of the PLACES ids above
+   - place: where it was taken (internal note, not shown on the website)
    - room: which room the print is shown in first: "living", "bath" or "office"
    - orientation: "landscape" or "portrait"
    - sizes (optional): limit which sizes this photo is sold in, e.g. ["40x50","50x70"] */

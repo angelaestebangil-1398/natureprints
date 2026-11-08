@@ -385,7 +385,7 @@ function renderHome() {
 
   const hs = $("[data-home-sets]");
   if (hs) hs.innerHTML = allSets().map((st) => setCardHTML(st, "wood")).join("");
-  $("[data-featured]").innerHTML = PRODUCTS.slice(0, 6).map(cardHTML).join("");
+  $("[data-featured]").innerHTML = PRODUCTS.map(cardHTML).join("");
 }
 
 function renderShop() {

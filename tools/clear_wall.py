@@ -131,3 +131,43 @@ def clear_fit(im, polys, ring=30, pad=8, feather=10):
     filled = Image.fromarray(np.clip(out, 0, 255).astype("uint8"))
     mask = inner.filter(ImageFilter.GaussianBlur(feather / 3))
     return Image.composite(filled, im, mask)
+
+
+def clear_coons(im, boxes, band=6, feather=6):
+    """Repaint each box from the wall on all four sides (Coons patch), so the new
+    wall meets the real wall on every edge. Boundary samples that are not plain
+    wall (colourful or dark, e.g. a plant) are replaced by interpolation along that side."""
+    import numpy as np
+    from PIL import ImageDraw
+    a = np.asarray(im).astype(float)
+    out = a.copy()
+    mask = Image.new("L", im.size, 0)
+
+    def clean(side):
+        mx, mn = side.max(1), side.min(1)
+        lum = side @ np.array([0.3, 0.59, 0.11])
+        bad = ((mx - mn) / np.maximum(mx, 1) > 0.22) | (lum < 110)
+        if bad.all() or not bad.any():
+            return side
+        idx = np.arange(len(side))
+        for c in range(3):
+            side[bad, c] = np.interp(idx[bad], idx[~bad], side[~bad, c])
+        return side
+
+    for x0, y0, x1, y1 in boxes:
+        T = clean(a[y0 - band:y0, x0:x1].mean(0))
+        B = clean(a[y1:y1 + band, x0:x1].mean(0))
+        L = clean(a[y0:y1, x0 - band:x0].mean(1))
+        R = clean(a[y0:y1, x1:x1 + band].mean(1))
+        w, h = x1 - x0, y1 - y0
+        u = (np.arange(w) / max(1, w - 1))[None, :, None]
+        v = (np.arange(h) / max(1, h - 1))[:, None, None]
+        TL, TR, BL, BR = T[0], T[-1], B[0], B[-1]
+        P = ((1 - v) * T[None] + v * B[None] + (1 - u) * L[:, None] + u * R[:, None]
+             - ((1 - u) * (1 - v) * TL + u * (1 - v) * TR + (1 - u) * v * BL + u * v * BR))
+        P += np.random.uniform(-1.0, 1.0, P.shape[:2])[..., None]
+        out[y0:y1, x0:x1] = P
+        ImageDraw.Draw(mask).rectangle((x0, y0, x1 - 1, y1 - 1), fill=255)
+    filled = Image.fromarray(np.clip(out, 0, 255).astype("uint8"))
+    mask = mask.filter(ImageFilter.GaussianBlur(feather / 3))
+    return Image.composite(filled, im, mask)

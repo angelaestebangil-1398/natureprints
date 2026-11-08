@@ -25,7 +25,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 import make_mockup as mm  # noqa: E402
-from clear_wall import clear_box, clear_fit, clear_lr, clear_profile, clear_tb  # noqa: E402
+from clear_wall import clear_box, clear_coons, clear_fit, clear_lr, clear_profile, clear_tb  # noqa: E402
 import perspective  # noqa: E402
 
 SIZES = {"40x50": (50, 40), "50x70": (70, 50), "70x100": (100, 70)}  # landscape w × h cm
@@ -70,7 +70,20 @@ PROOMS = {
     "dresser":   dict(label="Bedroom", ref=([(277, 15), (631, 15), (631, 255), (277, 255)], 100, 68),
                       cx=50, bottom=68, only=["70x100"], crop=(50, 0, 800, 600),
                       keep=[((238, 100, 300, 250), "bluish"), ((520, 235, 575, 275), "dark")]),
+    "nursery":   dict(label="Bedroom", ref=([(287.5, 367.5), (440, 367.5), (440, 552.5), (287.5, 552.5)], 45, 54),
+                      cx=52.8, bottom=54, only=["70x100"], crop=(30, 230, 840, 630),
+                      coons=[(280, 361, 449, 562), (487, 363, 654, 562)]),
+    "dining-table": dict(label="Dining room", ref=([(305, 385), (672.5, 385), (672.5, 871), (305, 871)], 60, 80),
+                      cx=30, bottom=80, crop=(0, 320, 900, 675),
+                      coons=[(298, 379, 682, 880)],
+                      keep=[((20, 715, 335, 940), "green")]),
+    "bath-beige": dict(label="Bathroom", ref=([(551, 104), (659, 76.5), (660, 225), (552.5, 230)], 30, 40),
+                      cx=None, bottom=40, max="40x50", crop=(290, 0, 610, 458),
+                      coons=[(545, 70, 666, 238), (704, 15, 888, 229), (321, 142, 367, 250)]),
 }
+_Hb = perspective.wall_to_image(*PROOMS["bath-beige"]["ref"])
+_rb = perspective.apply(__import__("numpy").linalg.inv(_Hb), [(881, 22), (881, 212.5)])
+PROOMS["bath-beige"]["cx"] = round(sum(p[0] for p in _rb) / 2 / 2, 1)
 # loft: centre the print between the left edge of the left frame and the right edge of the right frame
 _H = perspective.wall_to_image(*PROOMS["loft"]["ref"])
 _right_edge_cm = perspective.apply(__import__("numpy").linalg.inv(_H), [(486, 634), (486, 792.5)])
@@ -84,14 +97,14 @@ PLAN = {
     "crested-tit":      ["grey-sofa", "cabinet", "loft"],
     "orb-spider":       ["console", "white-living", "dresser"],
     "snipe":            ["white-living", "sideboard", "gold-sofa"],
-    "mallard-profile":  ["bath-concrete", "bath-tiles", "chair"],
-    "mallard-portrait": ["bath-tiles", "bath-concrete", "loft"],
+    "mallard-profile":  ["bath-concrete", "bath-tiles", "chair", "bath-beige"],
+    "mallard-portrait": ["bath-tiles", "bath-concrete", "loft", "bath-beige"],
     "ibex-mountain":    ["sideboard", "teal-living", "gold-sofa"],
     "ibex-portrait":    ["white-living", "cabinet", "dresser"],
-    "blue-tit":         ["cabinet", "grey-sofa", "loft"],
+    "blue-tit":         ["cabinet", "grey-sofa", "loft", "nursery"],
     "monk-parakeet":    ["teal-living", "dining", "chair"],
-    "serins":           ["kitchen-shelf", "console", "gold-sofa"],
-    "robin":            ["dining", "sideboard", "loft"],
+    "serins":           ["kitchen-shelf", "console", "gold-sofa", "nursery"],
+    "robin":            ["dining", "sideboard", "loft", "nursery"],
     "hoopoe":           ["white-living", "sideboard", "chair"],
 }
 
@@ -114,6 +127,8 @@ def cleared_room(name):
         im = clear_box(im, box, margin=margin, feather=25 if mode == "hf" else 0)
     if "lr" in cfg:
         im = clear_lr(im, cfg["lr"])
+    if "coons" in cfg:
+        im = clear_coons(im, cfg["coons"])
     if "fit" in cfg:
         im = clear_fit(im, cfg["fit"])
     if "tb" in cfg:

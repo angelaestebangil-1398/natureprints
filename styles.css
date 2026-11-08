@@ -192,7 +192,7 @@ h3 { font-size: 20px; }
 .view-flat .paper img { width: 100%; object-fit: cover; }
 .view-detail { aspect-ratio: 4/3; overflow: hidden; }
 .view-detail img { width: 100%; height: 100%; object-fit: cover; transform: scale(2.1); }
-.thumbs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 10px; }
+.thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 10px; margin-top: 10px; }
 .thumb { border: 1.5px solid transparent; padding: 0; background: var(--sand); cursor: pointer; border-radius: var(--radius); overflow: hidden; aspect-ratio: 4/3; position: relative; }
 .thumb.active { border-color: var(--ink); }
 .thumb > * { pointer-events: none; }

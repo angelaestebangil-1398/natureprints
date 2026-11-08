@@ -209,6 +209,13 @@ const MOCKUPS = {
           "40x50": "images/rooms/mallard-profile-chair-40x50.jpg",
           "50x70": "images/rooms/mallard-profile-chair-50x70.jpg"
         }
+      },
+      {
+        "id": "bath-beige",
+        "label": "Bathroom",
+        "sizes": {
+          "40x50": "images/rooms/mallard-profile-bath-beige-40x50.jpg"
+        }
       }
     ]
   },
@@ -238,6 +245,13 @@ const MOCKUPS = {
         "sizes": {
           "40x50": "images/rooms/mallard-portrait-loft-40x50.jpg",
           "50x70": "images/rooms/mallard-portrait-loft-50x70.jpg"
+        }
+      },
+      {
+        "id": "bath-beige",
+        "label": "Bathroom",
+        "sizes": {
+          "40x50": "images/rooms/mallard-portrait-bath-beige-40x50.jpg"
         }
       }
     ]
@@ -329,6 +343,13 @@ const MOCKUPS = {
           "40x50": "images/rooms/blue-tit-loft-40x50.jpg",
           "50x70": "images/rooms/blue-tit-loft-50x70.jpg"
         }
+      },
+      {
+        "id": "nursery",
+        "label": "Bedroom",
+        "sizes": {
+          "70x100": "images/rooms/blue-tit-nursery-70x100.jpg"
+        }
       }
     ]
   },
@@ -390,6 +411,13 @@ const MOCKUPS = {
           "50x70": "images/rooms/serins-gold-sofa-50x70.jpg",
           "70x100": "images/rooms/serins-gold-sofa-70x100.jpg"
         }
+      },
+      {
+        "id": "nursery",
+        "label": "Bedroom",
+        "sizes": {
+          "70x100": "images/rooms/serins-nursery-70x100.jpg"
+        }
       }
     ]
   },
@@ -420,6 +448,13 @@ const MOCKUPS = {
         "sizes": {
           "40x50": "images/rooms/robin-loft-40x50.jpg",
           "50x70": "images/rooms/robin-loft-50x70.jpg"
+        }
+      },
+      {
+        "id": "nursery",
+        "label": "Bedroom",
+        "sizes": {
+          "70x100": "images/rooms/robin-nursery-70x100.jpg"
         }
       }
     ]

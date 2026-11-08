@@ -83,6 +83,8 @@ def keep_mask(original, box, rule):
             sat = (max(r, g, b) - min(r, g, b)) / max(1, max(r, g, b))
             if rule == "bluish":
                 hit = b > r + 8
+            elif rule == "green":
+                hit = g > r + 10 and g > b
             elif rule == "dark":
                 hit = lum < 80
             elif rule == "notwall":  # anything colourful or dark on a neutral wall
